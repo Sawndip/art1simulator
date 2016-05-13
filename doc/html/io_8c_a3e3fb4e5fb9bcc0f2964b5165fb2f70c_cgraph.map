@@ -1,0 +1,9 @@
+<map id="write_train_results" name="write_train_results">
+<area shape="rect" id="node2" href="$io_8h.html#a3405b5370d2c756dc5135a5bf8fbdc34" title="openFile" alt="" coords="413,86,483,113"/>
+<area shape="rect" id="node3" href="$io_8c.html#ac238d5ff2b2ee59bdd90bed4188bb86a" title="write_clusts_prototypes" alt="" coords="181,35,341,62"/>
+<area shape="rect" id="node4" href="$io_8c.html#a4e19be6f887c6b2c836348fce9ca5b0f" title="write_clusts_pat_sets" alt="" coords="187,86,336,113"/>
+<area shape="rect" id="node5" href="$io_8c.html#afaadde76430f928670e1054153da6677" title="write_clusts_classes" alt="" coords="189,137,333,163"/>
+<area shape="rect" id="node6" href="$io_8c.html#a965830f0ac8cd6fb565d8e7fd040c950" title="write_ratio" alt="" coords="220,238,303,265"/>
+<area shape="rect" id="node8" href="$io_8c.html#a328704f75c999c31e485b3542a26207d" title="write_cluster_files" alt="" coords="198,187,325,214"/>
+<area shape="rect" id="node7" href="$utls_8c.html#a4604b9b7cf093310cdd990677740a6e5" title="pat_in_clust_set" alt="" coords="389,238,507,265"/>
+</map>

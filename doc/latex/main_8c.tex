@@ -1,0 +1,270 @@
+\hypertarget{main_8c}{\section{src/main.c File Reference}
+\label{main_8c}\index{src/main.\-c@{src/main.\-c}}
+}
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}io.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}utls.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}art1.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ccl\-\_\-internal.\-h\char`\"{}}\\*
+Include dependency graph for main.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} \hyperlink{main_8c_ad047ee2c5ce4159e1cc2c5beeda083a8}{rm\-\_\-empty\-\_\-pats} (List $\ast$lines)
+\item 
+static \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} \hyperlink{main_8c_a4543a55853c336fe059621cc398361db}{check\-\_\-pats\-\_\-validity} (List $\ast$lines)
+\item 
+static void \hyperlink{main_8c_a1edc6738eab5530da319b2d8eaac3553}{add\-\_\-noise} (Vector $\ast$pats, int perc)
+\item 
+static void \hyperlink{main_8c_ab8a60154a65c7382a3eea6caf2badeca}{check\-\_\-binary} (List $\ast$lines, bool skip)
+\item 
+static void \hyperlink{main_8c_aed57d793bb4e50acb328306d4a46c15a}{train\-\_\-network} (\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} $\ast$pat\-Len, Vector $\ast$$\ast$best\-Clusts, Vector $\ast$$\ast$clusts\-Classes, \hyperlink{struct_in_param}{In\-Param} par)
+\item 
+static void \hyperlink{main_8c_a679215a5eaffbf7f0bc2bbbf4c3610f9}{test\-\_\-network} (\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} train\-Pat\-Len, Vector $\ast$clusts, Vector $\ast$clusts\-Classes, \hyperlink{struct_in_param}{In\-Param} par)
+\item 
+int \hyperlink{main_8c_ac0f2228420376f4db7e1274f2b41667c}{main} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Mathieu Fourcroy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+June 2015 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\-0.\-1
+\end{DoxyVersion}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000004}{Todo}]Change the data structures to make it more readable. \end{DoxyRefDesc}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8c_a1edc6738eab5530da319b2d8eaac3553}{\index{main.\-c@{main.\-c}!add\-\_\-noise@{add\-\_\-noise}}
+\index{add\-\_\-noise@{add\-\_\-noise}!main.c@{main.\-c}}
+\subsubsection[{add\-\_\-noise}]{\setlength{\rightskip}{0pt plus 5cm}static void add\-\_\-noise (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{pats, }
+\item[{int}]{perc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{main_8c_a1edc6738eab5530da319b2d8eaac3553}
+Add noise to each patterns of the patterns vector.
+
+The noise is added by flipping random bits of the patterns.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em pats} & The patterns which will be \char`\"{}noised\char`\"{}. \\
+\hline
+\mbox{\tt in}  & {\em perc} & The noise percentage to add to the patterns. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{main_8c_a1edc6738eab5530da319b2d8eaac3553_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_ab8a60154a65c7382a3eea6caf2badeca}{\index{main.\-c@{main.\-c}!check\-\_\-binary@{check\-\_\-binary}}
+\index{check\-\_\-binary@{check\-\_\-binary}!main.c@{main.\-c}}
+\subsubsection[{check\-\_\-binary}]{\setlength{\rightskip}{0pt plus 5cm}static void check\-\_\-binary (
+\begin{DoxyParamCaption}
+\item[{List $\ast$}]{lines, }
+\item[{bool}]{skip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{main_8c_ab8a60154a65c7382a3eea6caf2badeca}
+Check weither every patterns are maid of binary numbers (0/1).
+
+The function dosen't return any boolean because it automaticaly exit the program if the patterns aren't binary\-: it's impossible to build an A\-R\-T1 network with non-\/binary patterns.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The list of patterns to check. \\
+\hline
+\mbox{\tt in}  & {\em skip} & Indicate weither the first attribute of the csv string must be skipped or not. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{main_8c_ab8a60154a65c7382a3eea6caf2badeca_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_a4543a55853c336fe059621cc398361db}{\index{main.\-c@{main.\-c}!check\-\_\-pats\-\_\-validity@{check\-\_\-pats\-\_\-validity}}
+\index{check\-\_\-pats\-\_\-validity@{check\-\_\-pats\-\_\-validity}!main.c@{main.\-c}}
+\subsubsection[{check\-\_\-pats\-\_\-validity}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf ulong} check\-\_\-pats\-\_\-validity (
+\begin{DoxyParamCaption}
+\item[{List $\ast$}]{lines}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{main_8c_a4543a55853c336fe059621cc398361db}
+Check the patterns validity.
+
+Check\-:
+\begin{DoxyItemize}
+\item if there's enough patterns in the patterns list (at least 2).
+\item if patterns aren't 0000000... (in that case\-: remove them).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The patterns list to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of empty patterns removed. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{main_8c_a4543a55853c336fe059621cc398361db_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a4543a55853c336fe059621cc398361db_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_ac0f2228420376f4db7e1274f2b41667c}{\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{main_8c_ac0f2228420376f4db7e1274f2b41667c}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_ac0f2228420376f4db7e1274f2b41667c_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_ad047ee2c5ce4159e1cc2c5beeda083a8}{\index{main.\-c@{main.\-c}!rm\-\_\-empty\-\_\-pats@{rm\-\_\-empty\-\_\-pats}}
+\index{rm\-\_\-empty\-\_\-pats@{rm\-\_\-empty\-\_\-pats}!main.c@{main.\-c}}
+\subsubsection[{rm\-\_\-empty\-\_\-pats}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf ulong} rm\-\_\-empty\-\_\-pats (
+\begin{DoxyParamCaption}
+\item[{List $\ast$}]{lines}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{main_8c_ad047ee2c5ce4159e1cc2c5beeda083a8}
+Remove empty patterns from the patterns list.
+
+Scan every patterns and remove the patterns made of 0 only. Such a pattern is useless for the network and can cause an infitie loop.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The patterns list to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of empty patterns removed. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_ad047ee2c5ce4159e1cc2c5beeda083a8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_a679215a5eaffbf7f0bc2bbbf4c3610f9}{\index{main.\-c@{main.\-c}!test\-\_\-network@{test\-\_\-network}}
+\index{test\-\_\-network@{test\-\_\-network}!main.c@{main.\-c}}
+\subsubsection[{test\-\_\-network}]{\setlength{\rightskip}{0pt plus 5cm}static void test\-\_\-network (
+\begin{DoxyParamCaption}
+\item[{{\bf ulong}}]{train\-Pat\-Len, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{clusts\-Classes, }
+\item[{{\bf In\-Param}}]{par}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{main_8c_a679215a5eaffbf7f0bc2bbbf4c3610f9}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a679215a5eaffbf7f0bc2bbbf4c3610f9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{main_8c_a679215a5eaffbf7f0bc2bbbf4c3610f9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_aed57d793bb4e50acb328306d4a46c15a}{\index{main.\-c@{main.\-c}!train\-\_\-network@{train\-\_\-network}}
+\index{train\-\_\-network@{train\-\_\-network}!main.c@{main.\-c}}
+\subsubsection[{train\-\_\-network}]{\setlength{\rightskip}{0pt plus 5cm}static void train\-\_\-network (
+\begin{DoxyParamCaption}
+\item[{{\bf ulong} $\ast$}]{pat\-Len, }
+\item[{Vector $\ast$$\ast$}]{best\-Clusts, }
+\item[{Vector $\ast$$\ast$}]{clusts\-Classes, }
+\item[{{\bf In\-Param}}]{par}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{main_8c_aed57d793bb4e50acb328306d4a46c15a}
+The main function.
+
+This is the main function of the program. It fetch the network parameters, create the training patterns for the input file, train the network using the given parameters and then create the test patterns from the input test file and test them on the network. 
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_aed57d793bb4e50acb328306d4a46c15a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{main_8c_aed57d793bb4e50acb328306d4a46c15a_icgraph}
+\end{center}
+\end{figure}
+
+

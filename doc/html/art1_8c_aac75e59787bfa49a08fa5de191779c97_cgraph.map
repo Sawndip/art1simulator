@@ -1,0 +1,9 @@
+<map id="network_test" name="network_test">
+<area shape="rect" id="node2" href="$art1_8c.html#a1911a1940ed363f7f58050e738f076b8" title="test_next_candidate" alt="" coords="152,56,291,83"/>
+<area shape="rect" id="node3" href="$art1_8c.html#aad13cffc24501a03c4a28658a7818292" title="nearest_prot" alt="" coords="339,56,434,83"/>
+<area shape="rect" id="node4" href="$art1_8c.html#a5c928b4810ec54fc333a49c26aacc624" title="count_inhib_clusts" alt="" coords="483,5,613,32"/>
+<area shape="rect" id="node5" href="$art1_8c.html#adb1b5354deaf6f2e894ceb34715a36cf" title="fill_scores" alt="" coords="507,56,589,83"/>
+<area shape="rect" id="node8" href="$art1_8c.html#a6a244d9593bbcbc30389044848bb8bea" title="highest_score" alt="" coords="497,107,599,133"/>
+<area shape="rect" id="node6" href="$art1_8c.html#adefc21b0893b11ef75642d4b6206b6cb" title="comOnes" alt="" coords="662,31,741,57"/>
+<area shape="rect" id="node7" href="$art1_8c.html#a8a078c8dea015330aadc1877a0d2473a" title="ones" alt="" coords="676,81,727,108"/>
+</map>

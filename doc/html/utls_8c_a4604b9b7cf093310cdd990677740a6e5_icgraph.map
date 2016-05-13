@@ -1,0 +1,10 @@
+<map id="pat_in_clust_set" name="pat_in_clust_set">
+<area shape="rect" id="node2" href="$art1_8c.html#a5217c9d063680d8924839b9f0e6bfad0" title="clust_add_new" alt="" coords="171,5,280,32"/>
+<area shape="rect" id="node7" href="$art1_8c.html#a84b8605661376445ec3d74ec8e7d6cca" title="clust_add_pat" alt="" coords="174,56,277,83"/>
+<area shape="rect" id="node8" href="$io_8c.html#a965830f0ac8cd6fb565d8e7fd040c950" title="write_ratio" alt="" coords="353,107,436,133"/>
+<area shape="rect" id="node3" href="$art1_8c.html#a3e69b8605f3c9eea5ef7aef29f5d5f05" title="try_next_candidate" alt="" coords="329,56,461,83"/>
+<area shape="rect" id="node4" href="$art1_8h.html#ae84af51b551ff2e1db27eb807d0c5522" title="network_train" alt="" coords="523,56,623,83"/>
+<area shape="rect" id="node5" href="$main_8c.html#aed57d793bb4e50acb328306d4a46c15a" title="train_network" alt="" coords="686,81,786,108"/>
+<area shape="rect" id="node6" href="$main_8c.html#ac0f2228420376f4db7e1274f2b41667c" title="main" alt="" coords="835,81,885,108"/>
+<area shape="rect" id="node9" href="$io_8h.html#a72d8ceea6208425220d76bc1d02b7498" title="write_train_results" alt="" coords="509,107,637,133"/>
+</map>

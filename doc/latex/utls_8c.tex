@@ -1,0 +1,170 @@
+\hypertarget{utls_8c}{\section{src/utls.c File Reference}
+\label{utls_8c}\index{src/utls.\-c@{src/utls.\-c}}
+}
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}utls.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}io.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ccl\-\_\-internal.\-h\char`\"{}}\\*
+Include dependency graph for utls.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{utls_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{utls_8c_aa9a0ba51697010b724800616e773df94}{cmp\-Fun} (const void $\ast$elem1, const void $\ast$elem2, Compare\-Info $\ast$Extra\-Args)
+\item 
+\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} \hyperlink{utls_8c_abf712bbb614840946e7071df48d82291}{pat\-\_\-in\-\_\-set} (Vector $\ast$set, Vector $\ast$pat)
+\item 
+\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} \hyperlink{utls_8c_a4604b9b7cf093310cdd990677740a6e5}{pat\-\_\-in\-\_\-clust\-\_\-set} (const Vector $\ast$clusts, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} pat)
+\item 
+void \hyperlink{utls_8c_a517b46cc8a51561901270f19dfc65ee9}{line\-\_\-val\-\_\-to\-\_\-vec} (Vector $\ast$res, List $\ast$lines)
+\item 
+void \hyperlink{utls_8c_ad0f6d7f0f2c62b3a517a76428e4aab2e}{line\-\_\-class\-\_\-to\-\_\-vec} (Vector $\ast$res, List $\ast$lines)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{utls_8c_aa9a0ba51697010b724800616e773df94}{\index{utls.\-c@{utls.\-c}!cmp\-Fun@{cmp\-Fun}}
+\index{cmp\-Fun@{cmp\-Fun}!utls.c@{utls.\-c}}
+\subsubsection[{cmp\-Fun}]{\setlength{\rightskip}{0pt plus 5cm}int cmp\-Fun (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{elem1, }
+\item[{const void $\ast$}]{elem2, }
+\item[{Compare\-Info $\ast$}]{Extra\-Args}
+\end{DoxyParamCaption}
+)}}\label{utls_8c_aa9a0ba51697010b724800616e773df94}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{utls_8c_aa9a0ba51697010b724800616e773df94_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8c_ad0f6d7f0f2c62b3a517a76428e4aab2e}{\index{utls.\-c@{utls.\-c}!line\-\_\-class\-\_\-to\-\_\-vec@{line\-\_\-class\-\_\-to\-\_\-vec}}
+\index{line\-\_\-class\-\_\-to\-\_\-vec@{line\-\_\-class\-\_\-to\-\_\-vec}!utls.c@{utls.\-c}}
+\subsubsection[{line\-\_\-class\-\_\-to\-\_\-vec}]{\setlength{\rightskip}{0pt plus 5cm}void line\-\_\-class\-\_\-to\-\_\-vec (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{res, }
+\item[{List $\ast$}]{lines}
+\end{DoxyParamCaption}
+)}}\label{utls_8c_ad0f6d7f0f2c62b3a517a76428e4aab2e}
+Push each class variable of a list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures into a vector.
+
+\begin{DoxyNote}{Note}
+The elements of the vector or of variable size so we must create the vector with sizeof(void $\ast$) and push a pointer to the elements.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created vector containing the classes names. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utls_8c_ad0f6d7f0f2c62b3a517a76428e4aab2e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8c_a517b46cc8a51561901270f19dfc65ee9}{\index{utls.\-c@{utls.\-c}!line\-\_\-val\-\_\-to\-\_\-vec@{line\-\_\-val\-\_\-to\-\_\-vec}}
+\index{line\-\_\-val\-\_\-to\-\_\-vec@{line\-\_\-val\-\_\-to\-\_\-vec}!utls.c@{utls.\-c}}
+\subsubsection[{line\-\_\-val\-\_\-to\-\_\-vec}]{\setlength{\rightskip}{0pt plus 5cm}void line\-\_\-val\-\_\-to\-\_\-vec (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{res, }
+\item[{List $\ast$}]{lines}
+\end{DoxyParamCaption}
+)}}\label{utls_8c_a517b46cc8a51561901270f19dfc65ee9}
+Push each pattern of a list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures into a vector.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created vector containing the patterns. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utls_8c_a517b46cc8a51561901270f19dfc65ee9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8c_a4604b9b7cf093310cdd990677740a6e5}{\index{utls.\-c@{utls.\-c}!pat\-\_\-in\-\_\-clust\-\_\-set@{pat\-\_\-in\-\_\-clust\-\_\-set}}
+\index{pat\-\_\-in\-\_\-clust\-\_\-set@{pat\-\_\-in\-\_\-clust\-\_\-set}!utls.c@{utls.\-c}}
+\subsubsection[{pat\-\_\-in\-\_\-clust\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ulong} pat\-\_\-in\-\_\-clust\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{const Vector $\ast$}]{clusts, }
+\item[{{\bf ulong}}]{pat}
+\end{DoxyParamCaption}
+)}}\label{utls_8c_a4604b9b7cf093310cdd990677740a6e5}
+Check if a given pattern is in a cluster patterns set.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The pattern to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cluster index containing the pattern or N\-O\-T\-\_\-\-F\-O\-U\-N\-D if the pattern dosen't belongs to any cluster. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utls_8c_a4604b9b7cf093310cdd990677740a6e5_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8c_abf712bbb614840946e7071df48d82291}{\index{utls.\-c@{utls.\-c}!pat\-\_\-in\-\_\-set@{pat\-\_\-in\-\_\-set}}
+\index{pat\-\_\-in\-\_\-set@{pat\-\_\-in\-\_\-set}!utls.c@{utls.\-c}}
+\subsubsection[{pat\-\_\-in\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ulong} pat\-\_\-in\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{set, }
+\item[{Vector $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{utls_8c_abf712bbb614840946e7071df48d82291}
+Check if a given pattern is in a given patterns set.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em set} & The patterns set. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The pattern to check. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{utls_8c_abf712bbb614840946e7071df48d82291_cgraph}
+\end{center}
+\end{figure}
+
+

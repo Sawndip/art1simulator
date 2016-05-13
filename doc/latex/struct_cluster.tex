@@ -1,0 +1,36 @@
+\hypertarget{struct_cluster}{\section{Cluster Struct Reference}
+\label{struct_cluster}\index{Cluster@{Cluster}}
+}
+
+
+{\ttfamily \#include $<$utls.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Vector $\ast$ \hyperlink{struct_cluster_a5435b2d6c6d72ae1a3f1b330351df4e0}{prot}
+\item 
+Vector $\ast$ \hyperlink{struct_cluster_a0556b1f22ee46f5182612d02a05c24b3}{pat\-Set}
+\item 
+bool \hyperlink{struct_cluster_a1a40c90982b4564c988eafec3a43cb3c}{inhib}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The structure for a cluster, holding its prototype and assigned patterns. 
+
+\subsection{Field Documentation}
+\hypertarget{struct_cluster_a1a40c90982b4564c988eafec3a43cb3c}{\index{Cluster@{Cluster}!inhib@{inhib}}
+\index{inhib@{inhib}!Cluster@{Cluster}}
+\subsubsection[{inhib}]{\setlength{\rightskip}{0pt plus 5cm}inhib}}\label{struct_cluster_a1a40c90982b4564c988eafec3a43cb3c}
+The inhib boolean is a flag indicated whether the cluster is inhibited. \hypertarget{struct_cluster_a0556b1f22ee46f5182612d02a05c24b3}{\index{Cluster@{Cluster}!pat\-Set@{pat\-Set}}
+\index{pat\-Set@{pat\-Set}!Cluster@{Cluster}}
+\subsubsection[{pat\-Set}]{\setlength{\rightskip}{0pt plus 5cm}pat\-Set}}\label{struct_cluster_a0556b1f22ee46f5182612d02a05c24b3}
+pat\-Set is a set of patterns I\-D which belong to the cluster. It means that the previous prot vector has been shaped by these patterns when they where added to the cluster. \hypertarget{struct_cluster_a5435b2d6c6d72ae1a3f1b330351df4e0}{\index{Cluster@{Cluster}!prot@{prot}}
+\index{prot@{prot}!Cluster@{Cluster}}
+\subsubsection[{prot}]{\setlength{\rightskip}{0pt plus 5cm}prot}}\label{struct_cluster_a5435b2d6c6d72ae1a3f1b330351df4e0}
+The cluster prototype. it's the centroid of the cluster, it's basically a pattern wich contains 1 only where every patterns of the cluster have a 1. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{utls_8h}{utls.\-h}\end{DoxyCompactItemize}

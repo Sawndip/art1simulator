@@ -1,0 +1,277 @@
+\hypertarget{io_8h}{\section{src/io.h File Reference}
+\label{io_8h}\index{src/io.\-h@{src/io.\-h}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}utls.\-h\char`\"{}}\\*
+Include dependency graph for io.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{io_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{io_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{io_8h_a980a5417a58b32be68d8063dda364a04}{R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X}~\char`\"{}\-\_\-results\char`\"{}
+\item 
+\#define \hyperlink{io_8h_ac2af17fb59e4dd72455a2a99c1ca6716}{C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X}~\char`\"{}\-\_\-clust\char`\"{}
+\item 
+\#define \hyperlink{io_8h_adaf830ca173e11fc53174cfc3250ef3e}{R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R}~\char`\"{}./results/\char`\"{}
+\item 
+\#define \hyperlink{io_8h_af1520efb1b81efc199e3b4b488c60e86}{C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}~\char`\"{}clusters/\char`\"{}
+\item 
+\#define \hyperlink{io_8h_a4a33efa30320c5b77b9bcbeaab6b1dad}{T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R}~\char`\"{}train/\char`\"{}
+\item 
+\#define \hyperlink{io_8h_a56f1bb9c70e7f125dbc93addc313c6fc}{T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}~\char`\"{}test/\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{io_8h_a80f8a74945aebf5dcfdeab96825d5f1c}{set\-\_\-network\-\_\-values} (\hyperlink{struct_in_param}{In\-Param} $\ast$par, int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{io_8h_ae358f42d763b99428cdf3e715bbc796f}{print\-\_\-network\-\_\-values} (\hyperlink{struct_in_param}{In\-Param} par)
+\item 
+void \hyperlink{io_8h_ad8b111857701d408852c427d3a6e4506}{vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int} (Vector $\ast$vec)
+\item 
+void \hyperlink{io_8h_af6b21dcee544a6af4211e0471ef2a64b}{vec\-\_\-print\-\_\-as\-\_\-char} (Vector $\ast$vec)
+\item 
+void \hyperlink{io_8h_a28bccc0516042023b1f6e9d06fd531c0}{vector\-\_\-print\-\_\-ulong} (Vector $\ast$vec)
+\item 
+int \hyperlink{io_8h_a3405b5370d2c756dc5135a5bf8fbdc34}{open\-File} (F\-I\-L\-E $\ast$$\ast$file, const char $\ast$name, char const $\ast$mode)
+\item 
+void \hyperlink{io_8h_ad3f3f9a2e30a9158c82206fb913f2b3d}{read\-Csv} (\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} $\ast$plen, List $\ast$lines, F\-I\-L\-E $\ast$file, bool skip)
+\item 
+void \hyperlink{io_8h_a72d8ceea6208425220d76bc1d02b7498}{write\-\_\-train\-\_\-results} (Vector $\ast$$\ast$clusts\-Classes, \hyperlink{struct_in_param}{In\-Param} par, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} empty\-Pats, float fluc, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} n\-Pats, Vector $\ast$clusts, Vector $\ast$pats\-Class)
+\item 
+void \hyperlink{io_8h_afccc516ea32de34dd430ad12c045d15f}{write\-\_\-test\-\_\-results} (\hyperlink{struct_in_param}{In\-Param} par, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} empty\-Pats, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} n\-Pats, Vector $\ast$clusts, Vector $\ast$pats\-Class, Vector $\ast$test\-Res\-Classes)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{io_8h_af1520efb1b81efc199e3b4b488c60e86}{\index{io.\-h@{io.\-h}!C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R@{C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}}
+\index{C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R@{C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}!io.h@{io.\-h}}
+\subsubsection[{C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-L\-U\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R~\char`\"{}clusters/\char`\"{}}}\label{io_8h_af1520efb1b81efc199e3b4b488c60e86}
+\hypertarget{io_8h_ac2af17fb59e4dd72455a2a99c1ca6716}{\index{io.\-h@{io.\-h}!C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X@{C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X}}
+\index{C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X@{C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X}!io.h@{io.\-h}}
+\subsubsection[{C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-L\-U\-S\-T\-\_\-\-S\-U\-F\-F\-I\-X~\char`\"{}\-\_\-clust\char`\"{}}}\label{io_8h_ac2af17fb59e4dd72455a2a99c1ca6716}
+\hypertarget{io_8h_adaf830ca173e11fc53174cfc3250ef3e}{\index{io.\-h@{io.\-h}!R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R@{R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R}}
+\index{R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R@{R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R}!io.h@{io.\-h}}
+\subsubsection[{R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-E\-S\-\_\-\-F\-O\-L\-D\-E\-R~\char`\"{}./results/\char`\"{}}}\label{io_8h_adaf830ca173e11fc53174cfc3250ef3e}
+\hypertarget{io_8h_a980a5417a58b32be68d8063dda364a04}{\index{io.\-h@{io.\-h}!R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X@{R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X}}
+\index{R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X@{R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X}!io.h@{io.\-h}}
+\subsubsection[{R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-E\-S\-\_\-\-S\-U\-F\-F\-I\-X~\char`\"{}\-\_\-results\char`\"{}}}\label{io_8h_a980a5417a58b32be68d8063dda364a04}
+\hypertarget{io_8h_a56f1bb9c70e7f125dbc93addc313c6fc}{\index{io.\-h@{io.\-h}!T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R@{T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}}
+\index{T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R@{T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}!io.h@{io.\-h}}
+\subsubsection[{T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-E\-S\-T\-\_\-\-F\-O\-L\-D\-E\-R~\char`\"{}test/\char`\"{}}}\label{io_8h_a56f1bb9c70e7f125dbc93addc313c6fc}
+\hypertarget{io_8h_a4a33efa30320c5b77b9bcbeaab6b1dad}{\index{io.\-h@{io.\-h}!T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R@{T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R}}
+\index{T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R@{T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R}!io.h@{io.\-h}}
+\subsubsection[{T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-R\-A\-I\-N\-\_\-\-F\-O\-L\-D\-E\-R~\char`\"{}train/\char`\"{}}}\label{io_8h_a4a33efa30320c5b77b9bcbeaab6b1dad}
+
+
+\subsection{Function Documentation}
+\hypertarget{io_8h_a3405b5370d2c756dc5135a5bf8fbdc34}{\index{io.\-h@{io.\-h}!open\-File@{open\-File}}
+\index{open\-File@{open\-File}!io.h@{io.\-h}}
+\subsubsection[{open\-File}]{\setlength{\rightskip}{0pt plus 5cm}int open\-File (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$$\ast$}]{file, }
+\item[{const char $\ast$}]{name, }
+\item[{char const $\ast$}]{mode}
+\end{DoxyParamCaption}
+)}}\label{io_8h_a3405b5370d2c756dc5135a5bf8fbdc34}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8h_a3405b5370d2c756dc5135a5bf8fbdc34_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8h_ae358f42d763b99428cdf3e715bbc796f}{\index{io.\-h@{io.\-h}!print\-\_\-network\-\_\-values@{print\-\_\-network\-\_\-values}}
+\index{print\-\_\-network\-\_\-values@{print\-\_\-network\-\_\-values}!io.h@{io.\-h}}
+\subsubsection[{print\-\_\-network\-\_\-values}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-network\-\_\-values (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param}}]{par}
+\end{DoxyParamCaption}
+)}}\label{io_8h_ae358f42d763b99428cdf3e715bbc796f}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{io_8h_ae358f42d763b99428cdf3e715bbc796f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8h_ad3f3f9a2e30a9158c82206fb913f2b3d}{\index{io.\-h@{io.\-h}!read\-Csv@{read\-Csv}}
+\index{read\-Csv@{read\-Csv}!io.h@{io.\-h}}
+\subsubsection[{read\-Csv}]{\setlength{\rightskip}{0pt plus 5cm}void read\-Csv (
+\begin{DoxyParamCaption}
+\item[{{\bf ulong} $\ast$}]{plen, }
+\item[{List $\ast$}]{lines, }
+\item[{F\-I\-L\-E $\ast$}]{file, }
+\item[{bool}]{skip}
+\end{DoxyParamCaption}
+)}}\label{io_8h_ad3f3f9a2e30a9158c82206fb913f2b3d}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{io_8h_ad3f3f9a2e30a9158c82206fb913f2b3d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8h_a80f8a74945aebf5dcfdeab96825d5f1c}{\index{io.\-h@{io.\-h}!set\-\_\-network\-\_\-values@{set\-\_\-network\-\_\-values}}
+\index{set\-\_\-network\-\_\-values@{set\-\_\-network\-\_\-values}!io.h@{io.\-h}}
+\subsubsection[{set\-\_\-network\-\_\-values}]{\setlength{\rightskip}{0pt plus 5cm}void set\-\_\-network\-\_\-values (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param} $\ast$}]{par, }
+\item[{int}]{argc, }
+\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{io_8h_a80f8a74945aebf5dcfdeab96825d5f1c}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{io_8h_a80f8a74945aebf5dcfdeab96825d5f1c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8h_af6b21dcee544a6af4211e0471ef2a64b}{\index{io.\-h@{io.\-h}!vec\-\_\-print\-\_\-as\-\_\-char@{vec\-\_\-print\-\_\-as\-\_\-char}}
+\index{vec\-\_\-print\-\_\-as\-\_\-char@{vec\-\_\-print\-\_\-as\-\_\-char}!io.h@{io.\-h}}
+\subsubsection[{vec\-\_\-print\-\_\-as\-\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}void vec\-\_\-print\-\_\-as\-\_\-char (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{vec}
+\end{DoxyParamCaption}
+)}}\label{io_8h_af6b21dcee544a6af4211e0471ef2a64b}
+\hypertarget{io_8h_ad8b111857701d408852c427d3a6e4506}{\index{io.\-h@{io.\-h}!vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int@{vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int}}
+\index{vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int@{vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int}!io.h@{io.\-h}}
+\subsubsection[{vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int}]{\setlength{\rightskip}{0pt plus 5cm}void vec\-\_\-print\-\_\-char\-\_\-as\-\_\-int (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{vec}
+\end{DoxyParamCaption}
+)}}\label{io_8h_ad8b111857701d408852c427d3a6e4506}
+\hypertarget{io_8h_a28bccc0516042023b1f6e9d06fd531c0}{\index{io.\-h@{io.\-h}!vector\-\_\-print\-\_\-ulong@{vector\-\_\-print\-\_\-ulong}}
+\index{vector\-\_\-print\-\_\-ulong@{vector\-\_\-print\-\_\-ulong}!io.h@{io.\-h}}
+\subsubsection[{vector\-\_\-print\-\_\-ulong}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-print\-\_\-ulong (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{vec}
+\end{DoxyParamCaption}
+)}}\label{io_8h_a28bccc0516042023b1f6e9d06fd531c0}
+\hypertarget{io_8h_afccc516ea32de34dd430ad12c045d15f}{\index{io.\-h@{io.\-h}!write\-\_\-test\-\_\-results@{write\-\_\-test\-\_\-results}}
+\index{write\-\_\-test\-\_\-results@{write\-\_\-test\-\_\-results}!io.h@{io.\-h}}
+\subsubsection[{write\-\_\-test\-\_\-results}]{\setlength{\rightskip}{0pt plus 5cm}void write\-\_\-test\-\_\-results (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param}}]{par, }
+\item[{{\bf ulong}}]{empty\-Pats, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{n\-Pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats\-Class, }
+\item[{Vector $\ast$}]{test\-Res\-Classes}
+\end{DoxyParamCaption}
+)}}\label{io_8h_afccc516ea32de34dd430ad12c045d15f}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{io_8h_afccc516ea32de34dd430ad12c045d15f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8h_afccc516ea32de34dd430ad12c045d15f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8h_a72d8ceea6208425220d76bc1d02b7498}{\index{io.\-h@{io.\-h}!write\-\_\-train\-\_\-results@{write\-\_\-train\-\_\-results}}
+\index{write\-\_\-train\-\_\-results@{write\-\_\-train\-\_\-results}!io.h@{io.\-h}}
+\subsubsection[{write\-\_\-train\-\_\-results}]{\setlength{\rightskip}{0pt plus 5cm}void write\-\_\-train\-\_\-results (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{clusts\-Classes, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{{\bf ulong}}]{empty\-Pats, }
+\item[{float}]{fluc, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{n\-Pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats\-Class}
+\end{DoxyParamCaption}
+)}}\label{io_8h_a72d8ceea6208425220d76bc1d02b7498}
+Write the result datas on the output files.
+
+There's too much datas to write them on the terminal so they are written on output files. The main output file is \char`\"{}art\-\_\-results\char`\"{} (by default) and it contains every information used to build and train the network. Other output files are named \char`\"{}art\-\_\-clust\-\_\-xxx.\-csv\char`\"{} and they contains the cluster \#xxx prototype followed by every patterns which belongs to this cluster.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]It would be a good idea to use the output file in order to load a network.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em clusts\-Class} & The array that will be filled with the clusters's classes. \\
+\hline
+\mbox{\tt in}  & {\em par} & The network parameters. \\
+\hline
+\mbox{\tt in}  & {\em empty\-Pats} & Number of empty patterns removed. \\
+\hline
+\mbox{\tt in}  & {\em fluc} & The best recorded fluctuation. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\mbox{\tt in}  & {\em n\-Pats} & Number of training patterns of the network. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em pats\-Class} & The network training patterns classes. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8h_a72d8ceea6208425220d76bc1d02b7498_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8h_a72d8ceea6208425220d76bc1d02b7498_icgraph}
+\end{center}
+\end{figure}
+
+

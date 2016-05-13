@@ -1,0 +1,10 @@
+<map id="count_inhib_clusts" name="count_inhib_clusts">
+<area shape="rect" id="node2" href="$art1_8c.html#aad13cffc24501a03c4a28658a7818292" title="nearest_prot" alt="" coords="185,31,279,57"/>
+<area shape="rect" id="node3" href="$art1_8c.html#a3e69b8605f3c9eea5ef7aef29f5d5f05" title="try_next_candidate" alt="" coords="331,5,463,32"/>
+<area shape="rect" id="node7" href="$art1_8c.html#a1911a1940ed363f7f58050e738f076b8" title="test_next_candidate" alt="" coords="328,56,467,83"/>
+<area shape="rect" id="node4" href="$art1_8h.html#ae84af51b551ff2e1db27eb807d0c5522" title="network_train" alt="" coords="515,5,615,32"/>
+<area shape="rect" id="node5" href="$main_8c.html#aed57d793bb4e50acb328306d4a46c15a" title="train_network" alt="" coords="665,5,765,32"/>
+<area shape="rect" id="node6" href="$main_8c.html#ac0f2228420376f4db7e1274f2b41667c" title="main" alt="" coords="813,31,864,57"/>
+<area shape="rect" id="node8" href="$art1_8h.html#a117176d6a29f878cdc5030f70507868d" title="network_test" alt="" coords="517,56,614,83"/>
+<area shape="rect" id="node9" href="$main_8c.html#a679215a5eaffbf7f0bc2bbbf4c3610f9" title="test_network" alt="" coords="666,56,763,83"/>
+</map>

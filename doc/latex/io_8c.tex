@@ -1,0 +1,568 @@
+\hypertarget{io_8c}{\section{src/io.c File Reference}
+\label{io_8c}\index{src/io.\-c@{src/io.\-c}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{io_8c_a4e19be6f887c6b2c836348fce9ca5b0f}{write\-\_\-clusts\-\_\-pat\-\_\-sets} (F\-I\-L\-E $\ast$out, Vector $\ast$clusts)
+\item 
+static void \hyperlink{io_8c_afaadde76430f928670e1054153da6677}{write\-\_\-clusts\-\_\-classes} (Vector $\ast$$\ast$clusts\-Class, F\-I\-L\-E $\ast$out, Vector $\ast$clusts, Vector $\ast$pats\-Class)
+\item 
+static void \hyperlink{io_8c_a965830f0ac8cd6fb565d8e7fd040c950}{write\-\_\-ratio} (F\-I\-L\-E $\ast$out, Vector $\ast$pats, Vector $\ast$clusts, Vector $\ast$pats\-Class, Vector $\ast$clusts\-Class)
+\item 
+static void \hyperlink{io_8c_ac238d5ff2b2ee59bdd90bed4188bb86a}{write\-\_\-clusts\-\_\-prototypes} (F\-I\-L\-E $\ast$out, \hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$clusts, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} n\-Clusts)
+\item 
+static void \hyperlink{io_8c_a328704f75c999c31e485b3542a26207d}{write\-\_\-cluster\-\_\-files} (\hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$pats, Vector $\ast$clusts, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} n\-Clusts)
+\item 
+void \hyperlink{io_8c_a72d8ceea6208425220d76bc1d02b7498}{write\-\_\-train\-\_\-results} (Vector $\ast$$\ast$clusts\-Classes, \hyperlink{struct_in_param}{In\-Param} par, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} empty\-Pats, float fluc, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} n\-Pats, Vector $\ast$clusts, Vector $\ast$pats\-Class)
+\item 
+void \hyperlink{io_8c_aa7db0c1a52daa6b67e37b56e9b48bdc3}{write\-\_\-test\-\_\-results} (\hyperlink{struct_in_param}{In\-Param} par, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} empty\-Pats, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} n\-Pats, Vector $\ast$clusts, Vector $\ast$test\-Classes, Vector $\ast$test\-Res\-Classes)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Mathieu Fourcroy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+June 2015 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\-0.\-1
+\end{DoxyVersion}
+This file contains some function which are used to print informations on the terminal or to write the results files.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]Implement save and load for results files.\end{DoxyRefDesc}
+
+
+\subsubsection*{P\-A\-T\-T\-E\-R\-N\-S T\-Y\-P\-E }
+
+The patterns are effectivly interned in line\-\_\-to\-\_\-pat(). As it is for an A\-R\-T1 network they are binary patterns. Thus, they are interned as vectors of 1 and 0. The patterns are read in line\-\_\-to\-\_\-pat() and their \char`\"{}bits\char`\"{} are pushed in the vectors in the form of integers codes but the vectors type is char to save some memory. i.\-e.\-: the vectors contains char codes x0 and x1 only (not x30 and x31), that means that they need to be treated and printed as integers.
+
+\subsubsection*{I\-N\-P\-U\-T F\-I\-L\-E\-S }
+
+The input file must be in csv format (commat separateed values). The name of the classes (i.\-e.\-: the attribute to guess) must be on the first column. The files can contains any number of patterns of any length but only one pattern per line and every patterns M\-U\-S\-T have the same length. Comment are allowed on the files but they must begin by \char`\"{}\#\char`\"{} and \char`\"{}\#\char`\"{} must be the first character of the line like\-: 
+\begin{DoxyCode}
+\textcolor{preprocessor}{    # This is a comment and next are the patterns}
+\textcolor{preprocessor}{}    poisonous,0,1,0,0,0,0,1,0,0,1,1,...
+   \textcolor{keyword}{@end}ocde
+   Empty lines are allowed, they will be ignored by the parser.
+  /
+
+\textcolor{comment}{/*=====| INCLUDES |===========================================================*/}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <string.h>}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include <limits.h>}
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <sys/types.h>}
+\textcolor{preprocessor}{#include <dirent.h>}
+\textcolor{preprocessor}{#include <math.h>}
+\textcolor{preprocessor}{#include "\hyperlink{io_8h}{io.h}"}
+\textcolor{preprocessor}{#include "\hyperlink{dbg_8h}{dbg.h}"}
+
+\textcolor{comment}{/*=====| FUNCTIONS |==========================================================*/}
+\textcolor{keywordtype}{void} \hyperlink{io_8h_a80f8a74945aebf5dcfdeab96825d5f1c}{set\_network\_values}(\hyperlink{struct_in_param}{InParam} *par, \textcolor{keywordtype}{int} argc, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *argv[])\{
+    \textcolor{keywordflow}{if}((argc < 11))\{
+        fprintf(stderr, \textcolor{stringliteral}{"Invalid number of parameters!\(\backslash\)nExiting...\(\backslash\)n"});
+        exit(2);
+    \}
+    strcpy(par->\hyperlink{struct_in_param_adcd81017e33884084e72e477e5462f07}{trainFile}, argv[1]);
+    strcpy(par->\hyperlink{struct_in_param_ab064012679f686113e26114dd2a273f3}{testFile}, argv[2]);
+    strcpy(par->\hyperlink{struct_in_param_a74f24df2ba8ea34ebc927809d25a14ef}{prefix}, argv[3]);
+    par->\hyperlink{struct_in_param_a84926deb45bc620f21afab303b9114c3}{skip} = atoi(argv[4]);
+    par->\hyperlink{struct_in_param_aac324529f6880073feb747dc3c6f7add}{trainNoise} = atol(argv[5]);
+    par->\hyperlink{struct_in_param_a38957505183ab4eba98c9ea699fa286e}{testNoise} = atol(argv[6]);
+    par->\hyperlink{struct_in_param_ab146b9cbab6e73e7588b240dc709fe01}{beta} = atoi(argv[7]);
+    par->\hyperlink{struct_in_param_a785bde0eb3bff8f83bd6e019449f4a7d}{vigilance} = atof(argv[8]);
+    par->\hyperlink{struct_in_param_a342fcb2317908701d8574b9c0e7c8bd1}{minFluc} = atof(argv[9]);
+    par->\hyperlink{struct_in_param_aee3a18897dc672ba38e5a3a48b391bf5}{maxPasses} = atol(argv[10]);
+\}
+
+\textcolor{keywordtype}{void} \hyperlink{io_8h_ae358f42d763b99428cdf3e715bbc796f}{print\_network\_values}(\hyperlink{struct_in_param}{InParam} par)\{
+    puts(\textcolor{stringliteral}{"   \_   \_\_\_ \_\_\_\_\_ \_   \_\_\_ \_\_\_ \_\_  \_\_ \_   \_ \_      \_ \_\_\_\_\_ \_\_\_  \_\_\_ "}\(\backslash\)
+         \textcolor{stringliteral}{"\(\backslash\)n  /\_\(\backslash\)\(\backslash\) | \_ \(\backslash\)\(\backslash\)\_   \_/ | / \_\_|\_ \_|  \(\backslash\)\(\backslash\)/  | | | | |    /\_\(\backslash\)\(\backslash\)\_   \_/ \_ "}\(\backslash\)
+         \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)| \_ \(\backslash\)\(\backslash\)\(\backslash\)n / \_ \(\backslash\)\(\backslash\)|   / | | | | \(\backslash\)\(\backslash\)\_\_ \(\backslash\)\(\backslash\)| || |\(\backslash\)\(\backslash\)/| | |\_| | |\_\_ / \_ "}\(\backslash\)
+         \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)| || (\_) |   /\(\backslash\)n/\_/ \(\backslash\)\(\backslash\)\_\(\backslash\)\(\backslash\)\_|\_\(\backslash\)\(\backslash\) |\_| |\_| |\_\_\_/\_\_\_|\_|  "}\(\backslash\)
+         \textcolor{stringliteral}{"|\_|\(\backslash\)\(\backslash\)\_\_\_/|\_\_\_\_/\_/ \(\backslash\)\(\backslash\)\_\(\backslash\)\(\backslash\)\_| \(\backslash\)\(\backslash\)\_\_\_/|\_|\_\(\backslash\)\(\backslash\)\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"-------------------------------------------------------\(\backslash\)n\(\backslash\)n"});
+    puts(\textcolor{stringliteral}{"Runing ART1 algorithm using following parameters:"});
+    printf(\textcolor{stringliteral}{"\(\backslash\)tTraining file: %s\(\backslash\)n"}, par.\hyperlink{struct_in_param_adcd81017e33884084e72e477e5462f07}{trainFile});
+    printf(\textcolor{stringliteral}{"\(\backslash\)tTesting file: %s\(\backslash\)n"}, par.\hyperlink{struct_in_param_adcd81017e33884084e72e477e5462f07}{trainFile});
+    \textcolor{keywordflow}{if}(par.\hyperlink{struct_in_param_a84926deb45bc620f21afab303b9114c3}{skip})\{
+        printf(\textcolor{stringliteral}{"\(\backslash\)tSkipping first attribute of every patterns\(\backslash\)n"});
+    \}
+    printf(\textcolor{stringliteral}{"\(\backslash\)tOutput file prefix: %s\(\backslash\)n"}, par.\hyperlink{struct_in_param_a74f24df2ba8ea34ebc927809d25a14ef}{prefix});
+    printf(\textcolor{stringliteral}{"\(\backslash\)tFluctuation percentage: %g%%\(\backslash\)n"}, par.\hyperlink{struct_in_param_a342fcb2317908701d8574b9c0e7c8bd1}{minFluc});
+    printf(\textcolor{stringliteral}{"\(\backslash\)tMax number of iterations: %lu\(\backslash\)n"}, par.\hyperlink{struct_in_param_aee3a18897dc672ba38e5a3a48b391bf5}{maxPasses});
+    printf(\textcolor{stringliteral}{"\(\backslash\)tBeta parameter: %.0f\(\backslash\)n"}, par.\hyperlink{struct_in_param_ab146b9cbab6e73e7588b240dc709fe01}{beta});
+    printf(\textcolor{stringliteral}{"\(\backslash\)tVigilance parmeter: %g\(\backslash\)n"}, par.\hyperlink{struct_in_param_a785bde0eb3bff8f83bd6e019449f4a7d}{vigilance});
+\}
+
+\textcolor{keywordtype}{int} \hyperlink{io_8h_a3405b5370d2c756dc5135a5bf8fbdc34}{openFile}(FILE **file, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{char} \textcolor{keyword}{const} *mode)\{
+    \textcolor{comment}{//~ printf("Opening file \(\backslash\)"%s\(\backslash\)"... ", name);}
+     *file = fopen(name, mode);
+    \textcolor{keywordflow}{if}(*file == 0)\{
+       fprintf(stderr, \textcolor{stringliteral}{"\(\backslash\)nFAIL\(\backslash\)nERROR: Can't open file \(\backslash\)"%s\(\backslash\)"\(\backslash\)nExiting...\(\backslash\)n"}, 
+               name);
+       exit(10);
+    \}
+    \textcolor{comment}{//~ printf("OK\(\backslash\)n");}
+    \textcolor{keywordflow}{return} *file == NULL;
+\}
+
+\textcolor{keyword}{static} \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} nb\_cols(\textcolor{keywordtype}{char} *line)\{
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} c = 0;
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} count = 0;
+
+    \textcolor{keywordflow}{while}(line[c] != \textcolor{charliteral}{'\(\backslash\)0'})\{
+        \textcolor{keywordflow}{if}(line[c] == \textcolor{charliteral}{','})\{
+            count++;
+        \}
+        c++;
+    \}
+    \textcolor{keywordflow}{return} count;
+\}
+
+\textcolor{keywordtype}{void} \hyperlink{io_8h_ad8b111857701d408852c427d3a6e4506}{vec\_print\_char\_as\_int}(Vector *vec)\{
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i;
+
+    \textcolor{keywordtype}{size\_t} size = \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\_size}(vec);
+    \textcolor{keywordflow}{if}(size < 1)\{
+        printf(\textcolor{stringliteral}{"empty\(\backslash\)n"});
+        \textcolor{keywordflow}{return};
+    \}
+    \textcolor{keywordflow}{for}(i = 0; i < size - 1; i++)\{
+        printf(\textcolor{stringliteral}{"%i,"}, \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\_get\_as\_char}(vec, i));
+    \}
+    printf(\textcolor{stringliteral}{"%i\(\backslash\)n"}, \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\_get\_as\_char}(vec, i));
+\}
+
+\textcolor{keywordtype}{void} \hyperlink{io_8h_af6b21dcee544a6af4211e0471ef2a64b}{vec\_print\_as\_char}(Vector *vec)\{
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i;
+
+    \textcolor{keywordtype}{size\_t} size = \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\_size}(vec);
+    \textcolor{keywordflow}{if}(size < 1)\{
+        printf(\textcolor{stringliteral}{"empty\(\backslash\)n"});
+        \textcolor{keywordflow}{return};
+    \}
+    \textcolor{keywordflow}{for}(i = 0; i < size - 1; i++)\{
+        printf(\textcolor{stringliteral}{"%c,"}, \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\_get\_as\_char}(vec, i));
+    \}
+    printf(\textcolor{stringliteral}{"%c\(\backslash\)n"}, \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\_get\_as\_char}(vec, i));
+\}
+
+\textcolor{keywordtype}{void} \hyperlink{io_8h_a28bccc0516042023b1f6e9d06fd531c0}{vector\_print\_ulong}(Vector *vec)\{
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i;
+
+    \textcolor{keywordtype}{size\_t} size = \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\_size}(vec);
+    \textcolor{keywordflow}{if}(size < 1)\{
+        printf(\textcolor{stringliteral}{"empty\(\backslash\)n"});
+        \textcolor{keywordflow}{return};
+    \}
+    \textcolor{keywordflow}{for}(i = 0; i < size - 1; i++)\{
+        printf(\textcolor{stringliteral}{"%lu,"}, \hyperlink{utls_8h_a4b79612cd76e6d535736a758c3e594ce}{vec\_get\_as\_ulong}(vec, i));
+    \}
+    printf(\textcolor{stringliteral}{"%lu\(\backslash\)n"}, \hyperlink{utls_8h_a4b79612cd76e6d535736a758c3e594ce}{vec\_get\_as\_ulong}(vec, i));
+\}
+
+\textcolor{keyword}{static} \hyperlink{struct_c_s_v_line}{CSVLine} line\_to\_pat(\textcolor{keywordtype}{char} *line, \textcolor{keyword}{const} \textcolor{keywordtype}{bool} skip)\{
+    \hyperlink{struct_c_s_v_line}{CSVLine} res;
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i = 0;
+    \textcolor{keywordtype}{char} snumber;
+    \textcolor{keywordtype}{char} *buffer;
+
+    res.\hyperlink{struct_c_s_v_line_acb906433e1289aa1c251dc5057746a88}{val} = iVector.Create(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}), 1);
+    buffer = strtok(line, \textcolor{stringliteral}{","});
+    \textcolor{keywordflow}{while}(buffer && *buffer != \textcolor{charliteral}{'\(\backslash\)0'} && *buffer != \textcolor{charliteral}{'\(\backslash\)n'})\{
+        snumber = *buffer - \textcolor{charliteral}{'0'};    \textcolor{comment}{// '0' == 0x30 == 48 == 060}
+        \textcolor{keywordflow}{if}(i < skip)\{
+            res.\hyperlink{struct_c_s_v_line_a185c73c6507391d1eb38c776b68ce96d}{class} = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * strlen(buffer) + 1);
+            strcpy(res.\hyperlink{struct_c_s_v_line_a185c73c6507391d1eb38c776b68ce96d}{class}, buffer);
+        \}
+        \textcolor{keywordflow}{else}\{
+            \hyperlink{utls_8h_a7ff2f46fa4c3d284ecfb58cf2e12ee20}{vec\_pushback}(res.\hyperlink{struct_c_s_v_line_acb906433e1289aa1c251dc5057746a88}{val}, &snumber);
+        \}
+        buffer = strtok(NULL, \textcolor{stringliteral}{","});
+        \textcolor{keywordflow}{while}(buffer && *buffer == \textcolor{charliteral}{' '})\{
+            buffer++;
+        \}
+        i++;
+    \}
+    \textcolor{keywordflow}{return} res;
+\}
+
+\textcolor{keywordtype}{void} \hyperlink{io_8h_ad3f3f9a2e30a9158c82206fb913f2b3d}{readCsv}(\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} *plen, List *lines, FILE *file, \textcolor{keywordtype}{bool} skip)\{
+    \textcolor{keywordtype}{char} *readline = NULL;
+    \hyperlink{struct_c_s_v_line}{CSVLine} pat;
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} patLen;
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} lineLen = 0;
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} nlines = 1;
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} columns = 0;
+    \textcolor{keywordtype}{bool} firstLine = \textcolor{keyword}{false};
+    \textcolor{keywordtype}{bool} firstPat = \textcolor{keyword}{true};
+    \textcolor{keywordtype}{int} read;
+    \textcolor{keywordtype}{size\_t} len;
+
+    \textcolor{keywordflow}{while}((read = getline(&readline, &len, file)) != -1)\{
+        \textcolor{keywordflow}{if}((strlen(readline) < 1) || strcmp(readline, \textcolor{stringliteral}{"\(\backslash\)n"}) == 0 ||
+           (readline[0] == \textcolor{charliteral}{'#'}))\{
+            nlines++;
+            \textcolor{keywordflow}{continue};
+        \}
+        \textcolor{keywordflow}{if}(firstLine == \textcolor{keyword}{false})\{
+            columns = nb\_cols(readline);
+            firstLine = \textcolor{keyword}{true};
+        \}
+        pat = line\_to\_pat(readline, skip);
+        patLen = skip + \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\_size}(pat.\hyperlink{struct_c_s_v_line_acb906433e1289aa1c251dc5057746a88}{val});
+
+        \textcolor{keywordflow}{if}(!firstPat)\{
+            \textcolor{keywordflow}{if}(lineLen == patLen)\{
+                iList.Add(lines, &pat);
+            \}
+            \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(patLen > 0)\{
+                fprintf(stderr, \textcolor{stringliteral}{"\(\backslash\)nERROR: line %lu has %lu columns. Previous "}\(\backslash\)
+                        \textcolor{stringliteral}{"lines had %lu columns ...\(\backslash\)n\(\backslash\)nExiting...\(\backslash\)n\(\backslash\)n"},
+                        nlines, patLen, lineLen);
+                exit(11);
+            \}
+            \textcolor{keywordflow}{else}\{
+                printf(\textcolor{stringliteral}{"\(\backslash\)nline %lu is empty - skipping\(\backslash\)n"}, nlines);
+            \}
+        \}
+        \textcolor{keywordflow}{else}\{
+            firstPat = \textcolor{keyword}{false};
+            lineLen = patLen;
+            iList.Add(lines, &pat);
+        \}
+        nlines++;
+        \textcolor{keywordflow}{if}(nlines == ULONG\_MAX)\{
+            fprintf(stderr, \textcolor{stringliteral}{"ERROR: The input file contains too much lines"});
+            exit(5);
+        \}
+    \}
+    *plen = columns - skip;
+    free(readline);
+\}
+
+\textcolor{keyword}{static} \textcolor{keywordtype}{void} write\_vector(FILE *out, Vector *pat)\{
+    \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i;
+
+    \textcolor{keywordflow}{if}(\hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\_size}(pat) < 1)\{
+        printf(\textcolor{stringliteral}{"WARNING: pattern is empty: nothing to print\(\backslash\)n"});
+        \textcolor{keywordflow}{return};
+    \}
+    \textcolor{keywordflow}{for}(i = 0; i < \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\_size}(pat) - 1; i++)\{
+        fprintf(out, \textcolor{stringliteral}{"%i,"}, \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\_get\_as\_char}(pat, i));
+    \}
+    fprintf(out, \textcolor{stringliteral}{"%i"}, \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\_get\_as\_char}(pat, i));
+    fprintf(out, \textcolor{stringliteral}{"\(\backslash\)n"});
+\}
+
+\end{DoxyCode}
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em out} & The output file where the clusters's patterns sets will be wwritten. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\hypertarget{io_8c_a328704f75c999c31e485b3542a26207d}{\index{io.\-c@{io.\-c}!write\-\_\-cluster\-\_\-files@{write\-\_\-cluster\-\_\-files}}
+\index{write\-\_\-cluster\-\_\-files@{write\-\_\-cluster\-\_\-files}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-cluster\-\_\-files}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-cluster\-\_\-files (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{{\bf ulong}}]{n\-Clusts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{io_8c_a328704f75c999c31e485b3542a26207d}
+Create a file where a cluster's prototype and its patterns are written.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em par} & The network parameters. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em n\-Clusts} & Number of network clusters. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{io_8c_a328704f75c999c31e485b3542a26207d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_a328704f75c999c31e485b3542a26207d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8c_afaadde76430f928670e1054153da6677}{\index{io.\-c@{io.\-c}!write\-\_\-clusts\-\_\-classes@{write\-\_\-clusts\-\_\-classes}}
+\index{write\-\_\-clusts\-\_\-classes@{write\-\_\-clusts\-\_\-classes}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-clusts\-\_\-classes}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-clusts\-\_\-classes (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{clusts\-Class, }
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats\-Class}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{io_8c_afaadde76430f928670e1054153da6677}
+Write the number of patterns in each class, in each cluster.
+
+For instance, in the mushrooms database there's two classes\-: p (poisonous) and e (edible). Then the repartition looks like\-: 
+\begin{DoxyCode}
+No. cluster |    p    |    e    | Class
+------------+---------+---------+------
+          0 |     274 |     320 | e
+          1 |       0 |     768 | e
+          2 |      32 |     108 | e
+          3 |      72 |     443 | e
+               [...]
+         15 |       8 |       0 | p
+         16 |       0 |      16 | e
+\end{DoxyCode}
+ The class column indicate the clusters's classes\-: the prominent class of the cluster.
+
+This function would deserved a little clean up. It is a long function for a small job but it actually generate ascii tables for any number of classes of any lengths.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em clusts\-Class} & The array that will be filled with the clusters's classes. \\
+\hline
+\mbox{\tt in}  & {\em out} & The output file where the classes repartition will be written. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em pats\-Class} & The network training patterns classes. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_afaadde76430f928670e1054153da6677_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8c_a4e19be6f887c6b2c836348fce9ca5b0f}{\index{io.\-c@{io.\-c}!write\-\_\-clusts\-\_\-pat\-\_\-sets@{write\-\_\-clusts\-\_\-pat\-\_\-sets}}
+\index{write\-\_\-clusts\-\_\-pat\-\_\-sets@{write\-\_\-clusts\-\_\-pat\-\_\-sets}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-clusts\-\_\-pat\-\_\-sets}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-clusts\-\_\-pat\-\_\-sets (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{Vector $\ast$}]{clusts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{io_8c_a4e19be6f887c6b2c836348fce9ca5b0f}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_a4e19be6f887c6b2c836348fce9ca5b0f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8c_ac238d5ff2b2ee59bdd90bed4188bb86a}{\index{io.\-c@{io.\-c}!write\-\_\-clusts\-\_\-prototypes@{write\-\_\-clusts\-\_\-prototypes}}
+\index{write\-\_\-clusts\-\_\-prototypes@{write\-\_\-clusts\-\_\-prototypes}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-clusts\-\_\-prototypes}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-clusts\-\_\-prototypes (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{{\bf ulong}}]{n\-Clusts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{io_8c_ac238d5ff2b2ee59bdd90bed4188bb86a}
+Write the prototype of every clusters in the given file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em out} & The output file where the prototypes will be written. \\
+\hline
+\mbox{\tt in}  & {\em par} & The network parameters. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em n\-Clusts} & Number of network clusters. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_ac238d5ff2b2ee59bdd90bed4188bb86a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8c_a965830f0ac8cd6fb565d8e7fd040c950}{\index{io.\-c@{io.\-c}!write\-\_\-ratio@{write\-\_\-ratio}}
+\index{write\-\_\-ratio@{write\-\_\-ratio}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-ratio}]{\setlength{\rightskip}{0pt plus 5cm}static void write\-\_\-ratio (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{out, }
+\item[{Vector $\ast$}]{pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats\-Class, }
+\item[{Vector $\ast$}]{clusts\-Class}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{io_8c_a965830f0ac8cd6fb565d8e7fd040c950}
+Write the success / fail ratio of the training stage in the given file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em out} & The output file where the prototypes will be written. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em pats\-Class} & The network training patterns classes. \\
+\hline
+\mbox{\tt in}  & {\em clusts\-Class} & The network clusters classes. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{io_8c_a965830f0ac8cd6fb565d8e7fd040c950_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_a965830f0ac8cd6fb565d8e7fd040c950_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8c_aa7db0c1a52daa6b67e37b56e9b48bdc3}{\index{io.\-c@{io.\-c}!write\-\_\-test\-\_\-results@{write\-\_\-test\-\_\-results}}
+\index{write\-\_\-test\-\_\-results@{write\-\_\-test\-\_\-results}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-test\-\_\-results}]{\setlength{\rightskip}{0pt plus 5cm}void write\-\_\-test\-\_\-results (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param}}]{par, }
+\item[{{\bf ulong}}]{empty\-Pats, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{n\-Pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{test\-Classes, }
+\item[{Vector $\ast$}]{test\-Res\-Classes}
+\end{DoxyParamCaption}
+)}}\label{io_8c_aa7db0c1a52daa6b67e37b56e9b48bdc3}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{io_8c_aa7db0c1a52daa6b67e37b56e9b48bdc3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_aa7db0c1a52daa6b67e37b56e9b48bdc3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{io_8c_a72d8ceea6208425220d76bc1d02b7498}{\index{io.\-c@{io.\-c}!write\-\_\-train\-\_\-results@{write\-\_\-train\-\_\-results}}
+\index{write\-\_\-train\-\_\-results@{write\-\_\-train\-\_\-results}!io.c@{io.\-c}}
+\subsubsection[{write\-\_\-train\-\_\-results}]{\setlength{\rightskip}{0pt plus 5cm}void write\-\_\-train\-\_\-results (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{clusts\-Classes, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{{\bf ulong}}]{empty\-Pats, }
+\item[{float}]{fluc, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{n\-Pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats\-Class}
+\end{DoxyParamCaption}
+)}}\label{io_8c_a72d8ceea6208425220d76bc1d02b7498}
+Write the result datas on the output files.
+
+There's too much datas to write them on the terminal so they are written on output files. The main output file is \char`\"{}art\-\_\-results\char`\"{} (by default) and it contains every information used to build and train the network. Other output files are named \char`\"{}art\-\_\-clust\-\_\-xxx.\-csv\char`\"{} and they contains the cluster \#xxx prototype followed by every patterns which belongs to this cluster.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]It would be a good idea to use the output file in order to load a network.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em clusts\-Class} & The array that will be filled with the clusters's classes. \\
+\hline
+\mbox{\tt in}  & {\em par} & The network parameters. \\
+\hline
+\mbox{\tt in}  & {\em empty\-Pats} & Number of empty patterns removed. \\
+\hline
+\mbox{\tt in}  & {\em fluc} & The best recorded fluctuation. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\mbox{\tt in}  & {\em n\-Pats} & Number of training patterns of the network. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em pats\-Class} & The network training patterns classes. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_a72d8ceea6208425220d76bc1d02b7498_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{io_8c_a72d8ceea6208425220d76bc1d02b7498_icgraph}
+\end{center}
+\end{figure}
+
+

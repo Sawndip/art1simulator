@@ -1,0 +1,73 @@
+\hypertarget{struct_in_param}{\section{In\-Param Struct Reference}
+\label{struct_in_param}\index{In\-Param@{In\-Param}}
+}
+
+
+{\ttfamily \#include $<$utls.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{struct_in_param_ab146b9cbab6e73e7588b240dc709fe01}{beta}
+\item 
+bool \hyperlink{struct_in_param_a84926deb45bc620f21afab303b9114c3}{skip}
+\item 
+float \hyperlink{struct_in_param_a785bde0eb3bff8f83bd6e019449f4a7d}{vigilance}
+\item 
+unsigned long \hyperlink{struct_in_param_aee3a18897dc672ba38e5a3a48b391bf5}{max\-Passes}
+\item 
+float \hyperlink{struct_in_param_a342fcb2317908701d8574b9c0e7c8bd1}{min\-Fluc}
+\item 
+int \hyperlink{struct_in_param_aac324529f6880073feb747dc3c6f7add}{train\-Noise}
+\item 
+int \hyperlink{struct_in_param_a38957505183ab4eba98c9ea699fa286e}{test\-Noise}
+\item 
+char \hyperlink{struct_in_param_a74f24df2ba8ea34ebc927809d25a14ef}{prefix} \mbox{[}P\-A\-T\-H\-\_\-\-M\-A\-X\mbox{]}
+\item 
+char \hyperlink{struct_in_param_adcd81017e33884084e72e477e5462f07}{train\-File} \mbox{[}P\-A\-T\-H\-\_\-\-M\-A\-X\mbox{]}
+\item 
+char \hyperlink{struct_in_param_ab064012679f686113e26114dd2a273f3}{test\-File} \mbox{[}P\-A\-T\-H\-\_\-\-M\-A\-X\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This structure holds every parameters of the network.
+
+The parameters can be set by the user via the \char`\"{}trainart\char`\"{} shell script and are initialized in the io.\-set\-\_\-network\-\_\-values function. 
+
+\subsection{Field Documentation}
+\hypertarget{struct_in_param_ab146b9cbab6e73e7588b240dc709fe01}{\index{In\-Param@{In\-Param}!beta@{beta}}
+\index{beta@{beta}!InParam@{In\-Param}}
+\subsubsection[{beta}]{\setlength{\rightskip}{0pt plus 5cm}beta}}\label{struct_in_param_ab146b9cbab6e73e7588b240dc709fe01}
+The beta value is used when testing patterns against clusters it influences the amount of created clusters. \hypertarget{struct_in_param_aee3a18897dc672ba38e5a3a48b391bf5}{\index{In\-Param@{In\-Param}!max\-Passes@{max\-Passes}}
+\index{max\-Passes@{max\-Passes}!InParam@{In\-Param}}
+\subsubsection[{max\-Passes}]{\setlength{\rightskip}{0pt plus 5cm}max\-Passes}}\label{struct_in_param_aee3a18897dc672ba38e5a3a48b391bf5}
+The max\-Passes indicates the maximum number of pass that the training will carry out. \hypertarget{struct_in_param_a342fcb2317908701d8574b9c0e7c8bd1}{\index{In\-Param@{In\-Param}!min\-Fluc@{min\-Fluc}}
+\index{min\-Fluc@{min\-Fluc}!InParam@{In\-Param}}
+\subsubsection[{min\-Fluc}]{\setlength{\rightskip}{0pt plus 5cm}min\-Fluc}}\label{struct_in_param_a342fcb2317908701d8574b9c0e7c8bd1}
+The min\-Fluc indicates the minimum percentage of fluctuation. If pass ever present a lower fluctuation percentage then the training stage stops. \hypertarget{struct_in_param_a74f24df2ba8ea34ebc927809d25a14ef}{\index{In\-Param@{In\-Param}!prefix@{prefix}}
+\index{prefix@{prefix}!InParam@{In\-Param}}
+\subsubsection[{prefix}]{\setlength{\rightskip}{0pt plus 5cm}prefix}}\label{struct_in_param_a74f24df2ba8ea34ebc927809d25a14ef}
+The prefix is the string that will be added to output files containing the results. \hypertarget{struct_in_param_a84926deb45bc620f21afab303b9114c3}{\index{In\-Param@{In\-Param}!skip@{skip}}
+\index{skip@{skip}!InParam@{In\-Param}}
+\subsubsection[{skip}]{\setlength{\rightskip}{0pt plus 5cm}skip}}\label{struct_in_param_a84926deb45bc620f21afab303b9114c3}
+The skip flag indicates weither the first input file column should be concidered as a class name. \hypertarget{struct_in_param_ab064012679f686113e26114dd2a273f3}{\index{In\-Param@{In\-Param}!test\-File@{test\-File}}
+\index{test\-File@{test\-File}!InParam@{In\-Param}}
+\subsubsection[{test\-File}]{\setlength{\rightskip}{0pt plus 5cm}test\-File}}\label{struct_in_param_ab064012679f686113e26114dd2a273f3}
+test\-File contains the patterns to test. \hypertarget{struct_in_param_a38957505183ab4eba98c9ea699fa286e}{\index{In\-Param@{In\-Param}!test\-Noise@{test\-Noise}}
+\index{test\-Noise@{test\-Noise}!InParam@{In\-Param}}
+\subsubsection[{test\-Noise}]{\setlength{\rightskip}{0pt plus 5cm}test\-Noise}}\label{struct_in_param_a38957505183ab4eba98c9ea699fa286e}
+The test\-Noise variable indicates the noise percentage to add to the testing patterns. \hypertarget{struct_in_param_adcd81017e33884084e72e477e5462f07}{\index{In\-Param@{In\-Param}!train\-File@{train\-File}}
+\index{train\-File@{train\-File}!InParam@{In\-Param}}
+\subsubsection[{train\-File}]{\setlength{\rightskip}{0pt plus 5cm}train\-File}}\label{struct_in_param_adcd81017e33884084e72e477e5462f07}
+train\-File is the input file\-: the csv file which is the data set. \hypertarget{struct_in_param_aac324529f6880073feb747dc3c6f7add}{\index{In\-Param@{In\-Param}!train\-Noise@{train\-Noise}}
+\index{train\-Noise@{train\-Noise}!InParam@{In\-Param}}
+\subsubsection[{train\-Noise}]{\setlength{\rightskip}{0pt plus 5cm}train\-Noise}}\label{struct_in_param_aac324529f6880073feb747dc3c6f7add}
+The train\-Noise variable indicates the noise percentage to add to the training patterns. \hypertarget{struct_in_param_a785bde0eb3bff8f83bd6e019449f4a7d}{\index{In\-Param@{In\-Param}!vigilance@{vigilance}}
+\index{vigilance@{vigilance}!InParam@{In\-Param}}
+\subsubsection[{vigilance}]{\setlength{\rightskip}{0pt plus 5cm}vigilance}}\label{struct_in_param_a785bde0eb3bff8f83bd6e019449f4a7d}
+The vigilance is the more important parameter of the art network. It act as a pattern acceptance threshold for the clusters. The higher the vigilance the pickier the threshold, the higher the amount of clusters. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{utls_8h}{utls.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+<map id="network_train" name="network_train">
+<area shape="rect" id="node2" href="$art1_8c.html#ad45139b18d1b8a8a247cb0a939b014cc" title="reset_reassigned" alt="" coords="166,60,287,87"/>
+<area shape="rect" id="node3" href="$art1_8c.html#aa8367cb1a8c9a7c88c54ca019a9e6c24" title="reset_clusts_inhib\l_flags" alt="" coords="163,111,290,153"/>
+<area shape="rect" id="node4" href="$art1_8c.html#a3e69b8605f3c9eea5ef7aef29f5d5f05" title="try_next_candidate" alt="" coords="161,177,293,204"/>
+<area shape="rect" id="node16" href="$art1_8c.html#a03b474f3089272d9f3b614dc73d8b468" title="compute_pass_stats" alt="" coords="155,228,298,255"/>
+<area shape="rect" id="node5" href="$art1_8c.html#aad13cffc24501a03c4a28658a7818292" title="nearest_prot" alt="" coords="354,101,449,128"/>
+<area shape="rect" id="node8" href="$art1_8c.html#adefc21b0893b11ef75642d4b6206b6cb" title="comOnes" alt="" coords="693,25,771,52"/>
+<area shape="rect" id="node9" href="$art1_8c.html#a8a078c8dea015330aadc1877a0d2473a" title="ones" alt="" coords="707,127,757,153"/>
+<area shape="rect" id="node11" href="$art1_8c.html#a5217c9d063680d8924839b9f0e6bfad0" title="clust_add_new" alt="" coords="347,228,456,255"/>
+<area shape="rect" id="node15" href="$art1_8c.html#a84b8605661376445ec3d74ec8e7d6cca" title="clust_add_pat" alt="" coords="350,279,453,305"/>
+<area shape="rect" id="node6" href="$art1_8c.html#a5c928b4810ec54fc333a49c26aacc624" title="count_inhib_clusts" alt="" coords="504,25,635,52"/>
+<area shape="rect" id="node7" href="$art1_8c.html#adb1b5354deaf6f2e894ceb34715a36cf" title="fill_scores" alt="" coords="529,76,610,103"/>
+<area shape="rect" id="node10" href="$art1_8c.html#a6a244d9593bbcbc30389044848bb8bea" title="highest_score" alt="" coords="518,127,621,153"/>
+<area shape="rect" id="node12" href="$utls_8c.html#a4604b9b7cf093310cdd990677740a6e5" title="pat_in_clust_set" alt="" coords="511,228,628,255"/>
+<area shape="rect" id="node13" href="$art1_8c.html#af42037e324f8d12d47b3816ee43870e3" title="clust_rm_pat" alt="" coords="521,279,618,305"/>
+<area shape="rect" id="node14" href="$art1_8c.html#aa31c8a4ded2582847654c80c3ccfcd2e" title="prot_add_pat" alt="" coords="683,304,781,331"/>
+</map>

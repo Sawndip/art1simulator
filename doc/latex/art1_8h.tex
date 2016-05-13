@@ -1,0 +1,130 @@
+\hypertarget{art1_8h}{\section{src/art1.h File Reference}
+\label{art1_8h}\index{src/art1.\-h@{src/art1.\-h}}
+}
+{\ttfamily \#include \char`\"{}utls.\-h\char`\"{}}\\*
+Include dependency graph for art1.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{art1_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{art1_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{art1_8h_a655c84af1b0034986ff56e12e84f983d}{N\-O\-N\-E}~-\/1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{art1_8h_ae84af51b551ff2e1db27eb807d0c5522}{network\-\_\-train} (Vector $\ast$$\ast$best\-Clusts, float $\ast$best\-Fluc, \hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$pats)
+\item 
+void \hyperlink{art1_8h_a117176d6a29f878cdc5030f70507868d}{network\-\_\-test} (Vector $\ast$$\ast$test\-Classes, Vector $\ast$best\-Clusts, \hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$pats, Vector $\ast$clusts\-Classes, Vector $\ast$classes)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{art1_8h_a655c84af1b0034986ff56e12e84f983d}{\index{art1.\-h@{art1.\-h}!N\-O\-N\-E@{N\-O\-N\-E}}
+\index{N\-O\-N\-E@{N\-O\-N\-E}!art1.h@{art1.\-h}}
+\subsubsection[{N\-O\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-O\-N\-E~-\/1}}\label{art1_8h_a655c84af1b0034986ff56e12e84f983d}
+
+
+\subsection{Function Documentation}
+\hypertarget{art1_8h_a117176d6a29f878cdc5030f70507868d}{\index{art1.\-h@{art1.\-h}!network\-\_\-test@{network\-\_\-test}}
+\index{network\-\_\-test@{network\-\_\-test}!art1.h@{art1.\-h}}
+\subsubsection[{network\-\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}void network\-\_\-test (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{test\-Classes, }
+\item[{Vector $\ast$}]{best\-Clusts, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{pats, }
+\item[{Vector $\ast$}]{clusts\-Classes, }
+\item[{Vector $\ast$}]{classes}
+\end{DoxyParamCaption}
+)}}\label{art1_8h_a117176d6a29f878cdc5030f70507868d}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8h_a117176d6a29f878cdc5030f70507868d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{art1_8h_a117176d6a29f878cdc5030f70507868d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8h_ae84af51b551ff2e1db27eb807d0c5522}{\index{art1.\-h@{art1.\-h}!network\-\_\-train@{network\-\_\-train}}
+\index{network\-\_\-train@{network\-\_\-train}!art1.h@{art1.\-h}}
+\subsubsection[{network\-\_\-train}]{\setlength{\rightskip}{0pt plus 5cm}void network\-\_\-train (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{best\-Clusts, }
+\item[{float $\ast$}]{best\-Fluc, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{pats}
+\end{DoxyParamCaption}
+)}}\label{art1_8h_ae84af51b551ff2e1db27eb807d0c5522}
+Train the network using the training patterns set and the parameters.
+
+It loops until at least one stop condition is met. There's two stop conditions\-:
+\begin{DoxyItemize}
+\item Stop when the number of performed passes reaches the maximum number of passes (par-\/$>$max\-Passes).
+\item Stop when the fluctuation rate is lower than or equal to the maximum fluctuation percentage (par-\/$>$min\-Fluc).
+\end{DoxyItemize}
+
+Inside this while loop there's a for loop which loops for each training patterns. And inside this for loop there's a second while loop which loops until the pattern is successfuly added to an existing or a new cluster.
+
+The function looks like\-:\-:
+
+L\-O\-O\-P W\-H\-I\-L\-E ( pass $<$ max\-Passes ) A\-N\-D ( fluc $>$ min\-Fluc )\-: L\-O\-O\-P F\-O\-R pat I\-N pats\-: D\-O\-: candidat = pick\-\_\-a\-\_\-candidat(clusters, pat) W\-H\-I\-L\-E N\-O\-T fits\-\_\-in\-\_\-candidat(candidat, pat)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em best\-Clusts} & \\
+\hline
+\mbox{\tt out}  & {\em best\-Fluc} & \\
+\hline
+\mbox{\tt in}  & {\em pats} & \\
+\hline
+\mbox{\tt in}  & {\em par} & \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8h_ae84af51b551ff2e1db27eb807d0c5522_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{art1_8h_ae84af51b551ff2e1db27eb807d0c5522_icgraph}
+\end{center}
+\end{figure}
+
+

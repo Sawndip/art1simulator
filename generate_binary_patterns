@@ -1,0 +1,60 @@
+#!/bin/bash
+
+INT_RE='^-?[0-9]+([.][0-9]+)?$'
+INPUT=""
+OUTPUT="out.csv"
+SKIP=0
+
+while test $# -gt 0; do
+    case "$1" in
+    
+        -h|--help)
+            echo -e "USAGE:\tgenerate_binary_patterns [-o -s] -i input_file \n"
+            echo -e "OPTIONS:"
+            echo -e "\t-i input_file"
+            echo -e "\t-o prefix for output files"
+            echo -e "\t-s x(x is positive integer) - skip last x columns"
+            exit 0
+            ;;
+        -s|--skip)
+            shift
+            if ! [[ $1 =~ $INT_RE ]] ; then
+               echo "ERROR: Skip must be an integer" >&2
+               exit 1
+            fi
+            SKIP=$1
+            shift
+            ;;
+        -o*|--output*)
+            shift
+            OUTPUT=$1
+            shift
+            ;;
+        -i*|--input*)
+            shift
+            if [ ! -f $1 ]; then
+                echo "ERROR: $1 dosen't exist!"
+                exit 1
+            fi
+            INPUT=$1
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [ "$INPUT" == "" ]; then
+    echo "ERROR: you must specify an input file using option -i"
+    echo -e "USAGE:\tgenerate_binary_patterns [-o -s] -i input_file \n"
+    echo -e "OPTIONS:"
+    echo -e "\t-i input_file"
+    echo -e "\t-o prefix for output files"
+    echo -e "\t-s x(x is positive integer) - skip last x columns"
+    exit 1;
+fi
+
+python ./genbinpats.py $INPUT $OUTPUT $SKIP
+
+exit 0

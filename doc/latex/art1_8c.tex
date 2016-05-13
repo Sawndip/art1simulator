@@ -1,0 +1,773 @@
+\hypertarget{art1_8c}{\section{src/art1.c File Reference}
+\label{art1_8c}\index{src/art1.\-c@{src/art1.\-c}}
+}
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}art1.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}utls.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}io.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ccl\-\_\-internal.\-h\char`\"{}}\\*
+Include dependency graph for art1.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{art1_8c_aa31c8a4ded2582847654c80c3ccfcd2e}{prot\-\_\-add\-\_\-pat} (Vector $\ast$prot, Vector $\ast$pat)
+\item 
+static void \hyperlink{art1_8c_af42037e324f8d12d47b3816ee43870e3}{clust\-\_\-rm\-\_\-pat} (Vector $\ast$clusts, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Clust, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Pat)
+\item 
+static long \hyperlink{art1_8c_adefc21b0893b11ef75642d4b6206b6cb}{com\-Ones} (Vector $\ast$pat1, Vector $\ast$pat2)
+\item 
+static long \hyperlink{art1_8c_a8a078c8dea015330aadc1877a0d2473a}{ones} (Vector $\ast$pat)
+\item 
+static void \hyperlink{art1_8c_a5217c9d063680d8924839b9f0e6bfad0}{clust\-\_\-add\-\_\-new} (Vector $\ast$clusts, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Pat)
+\item 
+static bool \hyperlink{art1_8c_a84b8605661376445ec3d74ec8e7d6cca}{clust\-\_\-add\-\_\-pat} (Vector $\ast$pat, Vector $\ast$pats, Vector $\ast$clusts, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Pat, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Candidat)
+\item 
+static void \hyperlink{art1_8c_adb1b5354deaf6f2e894ceb34715a36cf}{fill\-\_\-scores} (double $\ast$scores, const \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} psize, Vector $\ast$pat, Vector $\ast$clusts, float beta)
+\item 
+static void \hyperlink{art1_8c_a6a244d9593bbcbc30389044848bb8bea}{highest\-\_\-score} (Vector $\ast$$\ast$eq\-Scores, double $\ast$scores, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} psize, Vector $\ast$clusts)
+\item 
+static \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} \hyperlink{art1_8c_a5c928b4810ec54fc333a49c26aacc624}{count\-\_\-inhib\-\_\-clusts} (Vector $\ast$clusts)
+\item 
+static \hyperlink{struct_cluster}{Cluster} $\ast$ \hyperlink{art1_8c_aad13cffc24501a03c4a28658a7818292}{nearest\-\_\-prot} (\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} $\ast$i\-Candidat, Vector $\ast$pat, Vector $\ast$clusts, float beta)
+\item 
+static void \hyperlink{art1_8c_a03b474f3089272d9f3b614dc73d8b468}{compute\-\_\-pass\-\_\-stats} (\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} $\ast$no\-Reassigned, float $\ast$fluc, Vector $\ast$reassigned, Vector $\ast$pats)
+\item 
+static bool \hyperlink{art1_8c_a3e69b8605f3c9eea5ef7aef29f5d5f05}{try\-\_\-next\-\_\-candidate} (\hyperlink{struct_in_param}{In\-Param} param, Vector $\ast$pats, Vector $\ast$clusts, Vector $\ast$reassigned, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Pat)
+\item 
+static void \hyperlink{art1_8c_ad45139b18d1b8a8a247cb0a939b014cc}{reset\-\_\-reassigned} (Vector $\ast$reassigned)
+\item 
+static void \hyperlink{art1_8c_aa8367cb1a8c9a7c88c54ca019a9e6c24}{reset\-\_\-clusts\-\_\-inhib\-\_\-flags} (Vector $\ast$clusts)
+\item 
+void \hyperlink{art1_8c_ae84af51b551ff2e1db27eb807d0c5522}{network\-\_\-train} (Vector $\ast$$\ast$best\-Clusts, float $\ast$best\-Fluc, \hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$pats)
+\item 
+static \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} \hyperlink{art1_8c_a1911a1940ed363f7f58050e738f076b8}{test\-\_\-next\-\_\-candidate} (\hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$clusts, Vector $\ast$pats, \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} i\-Pat)
+\item 
+void \hyperlink{art1_8c_aac75e59787bfa49a08fa5de191779c97}{network\-\_\-test} (Vector $\ast$$\ast$test\-Res\-Classes, Vector $\ast$clusts, \hyperlink{struct_in_param}{In\-Param} par, Vector $\ast$pats, Vector $\ast$clusts\-Classes, Vector $\ast$classes)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Mathieu Fourcroy 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+June 2015 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\-0.\-1
+\end{DoxyVersion}
+This file contains the functions about training and testing the network.
+
+\subsubsection*{C\-L\-U\-S\-T\-E\-R\-S }
+
+A cluster include two things\-:
+\begin{DoxyItemize}
+\item A prototype\-: it's the centroid of the cluster, it's basically a pattern wich contains 1 only where every patterns of the cluster have a 1.
+\item A set of patterns\-: it's the cluster members, they shape the cluster prototype.
+\end{DoxyItemize}
+
+In this programm a cluster is represented by the \hyperlink{struct_cluster}{Cluster} structure (yes, really!)
+
+\subsubsection*{F\-L\-U\-C\-T\-U\-A\-T\-I\-O\-N }
+
+The param.\-min\-Fluc parameter is used to indicate the maximum fluctuation percentage. The fluctuation is a function of the number of patterns which were re-\/assigned to a different cluster. The higher the number of re-\/assigned patterns, the higher the fluctuation rate. This parameter is used in order to avoid (nearly) infinite loops when training patterns.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]The fluctuation rate must be increased after each pass. \end{DoxyRefDesc}
+
+
+\subsection{Function Documentation}
+\hypertarget{art1_8c_a5217c9d063680d8924839b9f0e6bfad0}{\index{art1.\-c@{art1.\-c}!clust\-\_\-add\-\_\-new@{clust\-\_\-add\-\_\-new}}
+\index{clust\-\_\-add\-\_\-new@{clust\-\_\-add\-\_\-new}!art1.c@{art1.\-c}}
+\subsubsection[{clust\-\_\-add\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}static void clust\-\_\-add\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{i\-Pat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a5217c9d063680d8924839b9f0e6bfad0}
+Add a new cluster to the network clusters vector.
+
+Ceate a new cluster and initialize it by setting pattern at index 'i\-Pat' in 'pats' as its prototype and adding pattern I\-D 'i\-Pat' in its patterns set. Finaly, add the new cluster to 'clusts'.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em clusts} & The network clusters vector where the new cluster will be added. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns. \\
+\hline
+\mbox{\tt in}  & {\em i\-Pat} & The index of the current training pattern. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a5217c9d063680d8924839b9f0e6bfad0_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a5217c9d063680d8924839b9f0e6bfad0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a84b8605661376445ec3d74ec8e7d6cca}{\index{art1.\-c@{art1.\-c}!clust\-\_\-add\-\_\-pat@{clust\-\_\-add\-\_\-pat}}
+\index{clust\-\_\-add\-\_\-pat@{clust\-\_\-add\-\_\-pat}!art1.c@{art1.\-c}}
+\subsubsection[{clust\-\_\-add\-\_\-pat}]{\setlength{\rightskip}{0pt plus 5cm}static bool clust\-\_\-add\-\_\-pat (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{pat, }
+\item[{Vector $\ast$}]{pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{{\bf ulong}}]{i\-Pat, }
+\item[{{\bf ulong}}]{i\-Candidat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a84b8605661376445ec3d74ec8e7d6cca}
+Add a pattern to a cluster.
+
+To add a pattern to a candidate cluster we must\-:
+\begin{DoxyItemize}
+\item Add the pattern I\-D to the cluster patterns set
+\item Reshape the cluster prototype.
+\end{DoxyItemize}
+
+If the pattern already belongs to another cluster then it is removed from this cluster and added to the candidate cluster (reassignement) and true is returned. If the pattern already belongs to the candidate cluster then false is returned and the algorithm should go with the next pattern to train. Else, if the pattern dosen't already belongs to any cluster then it is simply added to the candidate cluster and true is returned.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pat} & The pattern to add to the cluster. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\mbox{\tt in,out}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em i\-Pat} & The index of 'pat' in 'pats'. \\
+\hline
+\mbox{\tt in}  & {\em i\-Candidate} & The index of the cluter in which the pattern will be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the pattern has been added to the cluster ; false if the pattern already belongs to the cluster. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a84b8605661376445ec3d74ec8e7d6cca_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a84b8605661376445ec3d74ec8e7d6cca_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_af42037e324f8d12d47b3816ee43870e3}{\index{art1.\-c@{art1.\-c}!clust\-\_\-rm\-\_\-pat@{clust\-\_\-rm\-\_\-pat}}
+\index{clust\-\_\-rm\-\_\-pat@{clust\-\_\-rm\-\_\-pat}!art1.c@{art1.\-c}}
+\subsubsection[{clust\-\_\-rm\-\_\-pat}]{\setlength{\rightskip}{0pt plus 5cm}static void clust\-\_\-rm\-\_\-pat (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{clusts, }
+\item[{{\bf ulong}}]{i\-Clust, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{i\-Pat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_af42037e324f8d12d47b3816ee43870e3}
+Remove the given pattern from the given cluster.
+
+Remove the pattern at index 'i\-Pat' of 'pats' from cluster prototype at index 'i\-Clust' of 'clusts'. Also remove the pattern I\-D from the prototype patterns set.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\mbox{\tt in}  & {\em i\-Pat} & The index of the pattern to remove. \\
+\hline
+\mbox{\tt in,out}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em i\-Clust} & The index of the cluster from which the pattern will be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{art1_8c_af42037e324f8d12d47b3816ee43870e3_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_af42037e324f8d12d47b3816ee43870e3_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_adefc21b0893b11ef75642d4b6206b6cb}{\index{art1.\-c@{art1.\-c}!com\-Ones@{com\-Ones}}
+\index{com\-Ones@{com\-Ones}!art1.c@{art1.\-c}}
+\subsubsection[{com\-Ones}]{\setlength{\rightskip}{0pt plus 5cm}static long com\-Ones (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{pat1, }
+\item[{Vector $\ast$}]{pat2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_adefc21b0893b11ef75642d4b6206b6cb}
+Returns the number of 1 that the two given patterns have in common.
+
+Count and return the number of 1 which are present in 'pat1' and 'pat2', at same indexes.
+
+\begin{DoxyNote}{Note}
+'pat1' and 'pat2' must have the same length. It is admit and it's obvious because the program check it at the begining so no test are carried out here in order to save time.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pat1} & The first pattern, will be compared to 'pat2'. \\
+\hline
+\mbox{\tt in}  & {\em pat2} & The second pattern, will be compared to 'pat1'.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of 1 that the two given patterns have in common. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_adefc21b0893b11ef75642d4b6206b6cb_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a03b474f3089272d9f3b614dc73d8b468}{\index{art1.\-c@{art1.\-c}!compute\-\_\-pass\-\_\-stats@{compute\-\_\-pass\-\_\-stats}}
+\index{compute\-\_\-pass\-\_\-stats@{compute\-\_\-pass\-\_\-stats}!art1.c@{art1.\-c}}
+\subsubsection[{compute\-\_\-pass\-\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}static void compute\-\_\-pass\-\_\-stats (
+\begin{DoxyParamCaption}
+\item[{{\bf ulong} $\ast$}]{no\-Reassigned, }
+\item[{float $\ast$}]{fluc, }
+\item[{Vector $\ast$}]{reassigned, }
+\item[{Vector $\ast$}]{pats}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a03b474f3089272d9f3b614dc73d8b468}
+Compute the statistics of the last training pass.
+
+Sets the 'no\-Reassigned' parameter (number of patterns reassigned to another cluster during the pass) and the 'fluc' parameter (fluctuation percentage for the pass).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em no\-Reassigned} & Number of patterns which have been assigned to another cluster during the pass. \\
+\hline
+\mbox{\tt out}  & {\em fluc} & Fluctuation percentage of the pass. \\
+\hline
+\mbox{\tt in}  & {\em reassigned} & Array of values indicating the I\-D of the patterns which have been reassigned to another cluster (I\-D is the index in the array). \\
+\hline
+\mbox{\tt in}  & {\em pats} & The network training patterns set. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a03b474f3089272d9f3b614dc73d8b468_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a5c928b4810ec54fc333a49c26aacc624}{\index{art1.\-c@{art1.\-c}!count\-\_\-inhib\-\_\-clusts@{count\-\_\-inhib\-\_\-clusts}}
+\index{count\-\_\-inhib\-\_\-clusts@{count\-\_\-inhib\-\_\-clusts}!art1.c@{art1.\-c}}
+\subsubsection[{count\-\_\-inhib\-\_\-clusts}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf ulong} count\-\_\-inhib\-\_\-clusts (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{clusts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a5c928b4810ec54fc333a49c26aacc624}
+Returns the number of inhibited clusters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clusts} & The network clusters.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of inhibited clusters. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a5c928b4810ec54fc333a49c26aacc624_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_adb1b5354deaf6f2e894ceb34715a36cf}{\index{art1.\-c@{art1.\-c}!fill\-\_\-scores@{fill\-\_\-scores}}
+\index{fill\-\_\-scores@{fill\-\_\-scores}!art1.c@{art1.\-c}}
+\subsubsection[{fill\-\_\-scores}]{\setlength{\rightskip}{0pt plus 5cm}static void fill\-\_\-scores (
+\begin{DoxyParamCaption}
+\item[{double $\ast$}]{scores, }
+\item[{const {\bf ulong}}]{psize, }
+\item[{Vector $\ast$}]{pat, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{float}]{beta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_adb1b5354deaf6f2e894ceb34715a36cf}
+Fill the score array with the computed scores of the network prototypes.
+
+Fill the 'score' array with a score value for each cluster prototype in 'clusts'. The score value represents the similarity level between the actual pattern and a cluster prototype. If a prototype is inhibited then its score is N\-O\-N\-E.
+
+\begin{DoxyNote}{Note}
+The calculation is based on the 'beta' parameter, the pattern 'pat' and the cluster prototypes.
+
+The 'clusts' vector size, is passed as parameter 'psize' in order to avoid a second \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\-\_\-size()} call.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em scores} & The scores array to fill. \\
+\hline
+\mbox{\tt in}  & {\em psize} & Number of clusters of the network. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The current training pattern. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network cllusters. \\
+\hline
+\mbox{\tt in}  & {\em beta} & The network beta parameter. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{art1_8c_adb1b5354deaf6f2e894ceb34715a36cf_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_adb1b5354deaf6f2e894ceb34715a36cf_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a6a244d9593bbcbc30389044848bb8bea}{\index{art1.\-c@{art1.\-c}!highest\-\_\-score@{highest\-\_\-score}}
+\index{highest\-\_\-score@{highest\-\_\-score}!art1.c@{art1.\-c}}
+\subsubsection[{highest\-\_\-score}]{\setlength{\rightskip}{0pt plus 5cm}static void highest\-\_\-score (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{eq\-Scores, }
+\item[{double $\ast$}]{scores, }
+\item[{{\bf ulong}}]{psize, }
+\item[{Vector $\ast$}]{clusts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a6a244d9593bbcbc30389044848bb8bea}
+Compute the highest score in the 'scores' array.
+
+The 'eq\-Scores' array is modified to contain the highest score prototype(s) I\-D(s) (there can be multiple prototypes with the same highest score that's why 'eq\-Scores' is a vector).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em eq\-Scores} & The scores array to fill with every highest scores. \\
+\hline
+\mbox{\tt in}  & {\em scores} & The array containing the prototypes's scores. \\
+\hline
+\mbox{\tt in}  & {\em psize} & Number of clusters of the network. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network cllusters. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a6a244d9593bbcbc30389044848bb8bea_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_aad13cffc24501a03c4a28658a7818292}{\index{art1.\-c@{art1.\-c}!nearest\-\_\-prot@{nearest\-\_\-prot}}
+\index{nearest\-\_\-prot@{nearest\-\_\-prot}!art1.c@{art1.\-c}}
+\subsubsection[{nearest\-\_\-prot}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Cluster}$\ast$ nearest\-\_\-prot (
+\begin{DoxyParamCaption}
+\item[{{\bf ulong} $\ast$}]{i\-Candidat, }
+\item[{Vector $\ast$}]{pat, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{float}]{beta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_aad13cffc24501a03c4a28658a7818292}
+Compute and returns the uninhibited prototype closest to a given pattern.
+
+To achieve this, the function first compute the \char`\"{}similarity score\char`\"{} of every uninhibited prototypes (inhibited prototypes have a score of -\/1) then it computes the prototype with the highest score (if more than one prototype with equal highest score then the returned one is randomly chosen). If all clusters are inhibited then the function return false.
+
+\begin{DoxyNote}{Note}
+It would be more C-\/style to return a bool indicating if a candidate has been found or not and set it via a passed argument. But this way it is easier for freeing.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em candidat} & The uninhibited prototype closest to a given pattern (the candidate). \\
+\hline
+\mbox{\tt out}  & {\em i\-Candidat} & The index of the computed candidate. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The reference pattern. \\
+\hline
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em beta} & The network beta parameter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false weither a candidate has been found. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_aad13cffc24501a03c4a28658a7818292_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_aad13cffc24501a03c4a28658a7818292_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_aac75e59787bfa49a08fa5de191779c97}{\index{art1.\-c@{art1.\-c}!network\-\_\-test@{network\-\_\-test}}
+\index{network\-\_\-test@{network\-\_\-test}!art1.c@{art1.\-c}}
+\subsubsection[{network\-\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}void network\-\_\-test (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{test\-Res\-Classes, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{pats, }
+\item[{Vector $\ast$}]{clusts\-Classes, }
+\item[{Vector $\ast$}]{classes}
+\end{DoxyParamCaption}
+)}}\label{art1_8c_aac75e59787bfa49a08fa5de191779c97}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_aac75e59787bfa49a08fa5de191779c97_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{art1_8c_aac75e59787bfa49a08fa5de191779c97_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_ae84af51b551ff2e1db27eb807d0c5522}{\index{art1.\-c@{art1.\-c}!network\-\_\-train@{network\-\_\-train}}
+\index{network\-\_\-train@{network\-\_\-train}!art1.c@{art1.\-c}}
+\subsubsection[{network\-\_\-train}]{\setlength{\rightskip}{0pt plus 5cm}void network\-\_\-train (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$$\ast$}]{best\-Clusts, }
+\item[{float $\ast$}]{best\-Fluc, }
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{pats}
+\end{DoxyParamCaption}
+)}}\label{art1_8c_ae84af51b551ff2e1db27eb807d0c5522}
+Train the network using the training patterns set and the parameters.
+
+It loops until at least one stop condition is met. There's two stop conditions\-:
+\begin{DoxyItemize}
+\item Stop when the number of performed passes reaches the maximum number of passes (par-\/$>$max\-Passes).
+\item Stop when the fluctuation rate is lower than or equal to the maximum fluctuation percentage (par-\/$>$min\-Fluc).
+\end{DoxyItemize}
+
+Inside this while loop there's a for loop which loops for each training patterns. And inside this for loop there's a second while loop which loops until the pattern is successfuly added to an existing or a new cluster.
+
+The function looks like\-:\-:
+
+L\-O\-O\-P W\-H\-I\-L\-E ( pass $<$ max\-Passes ) A\-N\-D ( fluc $>$ min\-Fluc )\-: L\-O\-O\-P F\-O\-R pat I\-N pats\-: D\-O\-: candidat = pick\-\_\-a\-\_\-candidat(clusters, pat) W\-H\-I\-L\-E N\-O\-T fits\-\_\-in\-\_\-candidat(candidat, pat)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em best\-Clusts} & \\
+\hline
+\mbox{\tt out}  & {\em best\-Fluc} & \\
+\hline
+\mbox{\tt in}  & {\em pats} & \\
+\hline
+\mbox{\tt in}  & {\em par} & \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_ae84af51b551ff2e1db27eb807d0c5522_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{art1_8c_ae84af51b551ff2e1db27eb807d0c5522_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a8a078c8dea015330aadc1877a0d2473a}{\index{art1.\-c@{art1.\-c}!ones@{ones}}
+\index{ones@{ones}!art1.c@{art1.\-c}}
+\subsubsection[{ones}]{\setlength{\rightskip}{0pt plus 5cm}static long ones (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{pat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a8a078c8dea015330aadc1877a0d2473a}
+Returns number of 1 in a given pattern (or a prototype).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pat} & The pattern.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of 1 in the given pattern. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a8a078c8dea015330aadc1877a0d2473a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_aa31c8a4ded2582847654c80c3ccfcd2e}{\index{art1.\-c@{art1.\-c}!prot\-\_\-add\-\_\-pat@{prot\-\_\-add\-\_\-pat}}
+\index{prot\-\_\-add\-\_\-pat@{prot\-\_\-add\-\_\-pat}!art1.c@{art1.\-c}}
+\subsubsection[{prot\-\_\-add\-\_\-pat}]{\setlength{\rightskip}{0pt plus 5cm}static void prot\-\_\-add\-\_\-pat (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{prot, }
+\item[{Vector $\ast$}]{pat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_aa31c8a4ded2582847654c80c3ccfcd2e}
+Add a given pattern to a cluster prototype.
+
+Add pattern 'pat' to a cluster prototype 'prot'. The prototype 'prot' will be more similar to this pattern because if it has a 1 where pattern have a 0 then the 1 become a 0.
+
+\begin{DoxyNote}{Note}
+A prototype have a 1 only where every member patterns have a 1.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em prot} & The prototype that will be modified to ressembles the pattern. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The pattern to add to the prototype. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_aa31c8a4ded2582847654c80c3ccfcd2e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_aa8367cb1a8c9a7c88c54ca019a9e6c24}{\index{art1.\-c@{art1.\-c}!reset\-\_\-clusts\-\_\-inhib\-\_\-flags@{reset\-\_\-clusts\-\_\-inhib\-\_\-flags}}
+\index{reset\-\_\-clusts\-\_\-inhib\-\_\-flags@{reset\-\_\-clusts\-\_\-inhib\-\_\-flags}!art1.c@{art1.\-c}}
+\subsubsection[{reset\-\_\-clusts\-\_\-inhib\-\_\-flags}]{\setlength{\rightskip}{0pt plus 5cm}static void reset\-\_\-clusts\-\_\-inhib\-\_\-flags (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{clusts}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_aa8367cb1a8c9a7c88c54ca019a9e6c24}
+Set the inhib flag of every elements of the vector to false.
+
+The clusts vector containg the clusters of the network. Each cluster has an \char`\"{}inhib\char`\"{} flag which indicate if it has been inhibited or not. Before trying to add a pattern in a cluster, every clusters inhib flag must be set back to false.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em clusts} & The vector containing the clusters. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_aa8367cb1a8c9a7c88c54ca019a9e6c24_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_ad45139b18d1b8a8a247cb0a939b014cc}{\index{art1.\-c@{art1.\-c}!reset\-\_\-reassigned@{reset\-\_\-reassigned}}
+\index{reset\-\_\-reassigned@{reset\-\_\-reassigned}!art1.c@{art1.\-c}}
+\subsubsection[{reset\-\_\-reassigned}]{\setlength{\rightskip}{0pt plus 5cm}static void reset\-\_\-reassigned (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{reassigned}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_ad45139b18d1b8a8a247cb0a939b014cc}
+Set every elements of the vector to false.
+
+The reassigned vector contains one flag for each pattern of the training patterns set which indicate if the pattern has been reassigned or not. At the begining of every passes these flags must be set back to false.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em reassigned} & The vector containing the flags to reset. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_ad45139b18d1b8a8a247cb0a939b014cc_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a1911a1940ed363f7f58050e738f076b8}{\index{art1.\-c@{art1.\-c}!test\-\_\-next\-\_\-candidate@{test\-\_\-next\-\_\-candidate}}
+\index{test\-\_\-next\-\_\-candidate@{test\-\_\-next\-\_\-candidate}!art1.c@{art1.\-c}}
+\subsubsection[{test\-\_\-next\-\_\-candidate}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf ulong} test\-\_\-next\-\_\-candidate (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param}}]{par, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{pats, }
+\item[{{\bf ulong}}]{i\-Pat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a1911a1940ed363f7f58050e738f076b8}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a1911a1940ed363f7f58050e738f076b8_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a1911a1940ed363f7f58050e738f076b8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{art1_8c_a3e69b8605f3c9eea5ef7aef29f5d5f05}{\index{art1.\-c@{art1.\-c}!try\-\_\-next\-\_\-candidate@{try\-\_\-next\-\_\-candidate}}
+\index{try\-\_\-next\-\_\-candidate@{try\-\_\-next\-\_\-candidate}!art1.c@{art1.\-c}}
+\subsubsection[{try\-\_\-next\-\_\-candidate}]{\setlength{\rightskip}{0pt plus 5cm}static bool try\-\_\-next\-\_\-candidate (
+\begin{DoxyParamCaption}
+\item[{{\bf In\-Param}}]{param, }
+\item[{Vector $\ast$}]{pats, }
+\item[{Vector $\ast$}]{clusts, }
+\item[{Vector $\ast$}]{reassigned, }
+\item[{{\bf ulong}}]{i\-Pat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{art1_8c_a3e69b8605f3c9eea5ef7aef29f5d5f05}
+Select a cluster candidate and try to add the pattern to this candidate.
+
+Select the nearest prototype of the pattern at index 'i\-Pat' in 'pats' (the candidate) and check if the pattern can fits in the candidate's cluster depending on beta and vigilance parameters. If the pattern fits in the cluster, then it is added to it, else, a new cluster is create and the pattern became its prototype.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em param} & The network parameters. \\
+\hline
+\mbox{\tt in}  & {\em pats} & The training patterns set. \\
+\hline
+\mbox{\tt in,out}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in,out}  & {\em reassigned} & The reassigned pattern flags. \\
+\hline
+\mbox{\tt in}  & {\em i\-Pat} & The index of the current training pattern to assigned to a cluster.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true or false weither The pattern has been added to a cluster or not. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a3e69b8605f3c9eea5ef7aef29f5d5f05_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{art1_8c_a3e69b8605f3c9eea5ef7aef29f5d5f05_icgraph}
+\end{center}
+\end{figure}
+
+

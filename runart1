@@ -1,0 +1,153 @@
+#!/bin/bash
+
+INT_RE='^[0-9]+$'
+FLOAT_RE='^[0-9]+([.][0-9]+)?$'
+
+BETA=1
+SKIP=0
+VIGILANCE=0.5
+TRAINNOISE=0
+TESTNOISE=0
+OUTPUT="art"
+FLUCTUATION=5
+PASS=100
+TRAIN=""
+TEST=""
+
+usage(){
+    echo -e "USAGE:\trunart1 [-T -o -b -v -s -e -n -p] -t input_file"
+    echo -e "OPTIONS:"
+    echo -e "\t-t file containing the patterns to train"
+    echo -e "\t-T file containing the patterns to test"
+    echo -e "\t-o prefix of the output files (default is \"art\")"
+    echo -e "\t-b beta network parameter: influences the number of created clusters (default is 1)"
+    echo -e "\t-v vigilance network parameter: similarity threshold (default is 0.5)"
+    echo -e "\t-s skip the first column in the input file"
+    echo -e "\t-f fluctuation network parameter: stop if fluctuation lower this parameter"
+    echo -e "\t-n noise network parameter: percentage of noise to add to the training patterns"
+    echo -e "\t-N noise network parameter: percentage of noise to add to the testing patterns"
+    echo -e "\t-p passes network parameter: maximum number of passes through the input examples"
+}
+
+while test $# -gt 0; do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -b*|--beta*)
+            shift
+            if ! [[ $1 =~ $INT_RE ]]; then
+               echo "ERROR: BETA must be an integer" >&2
+               exit 1
+            fi
+            BETA=$1
+            shift
+            ;;
+        -s|--skip)
+            SKIP=1
+            shift
+            ;;
+        -v*|--vigilance*)
+            shift
+            if ! [[ $1 =~ $FLOAT_RE ]]; then
+               echo "ERROR: VIGILANCE must be a float" >&2
+               exit 1
+            fi
+            if (( $(bc <<< "$1 > 1") == 1 )) || (( $(bc <<< "$1 < 0") == 1 ))
+            then
+               echo "ERROR: VIGILANCE must in range [0, 1]" >&2
+               exit 1
+            fi
+            VIGILANCE=$1
+            shift
+            ;;
+        -o*|--output*)
+            shift
+            OUTPUT=$1
+            shift
+            ;;
+        -f*|--fluctuation*)
+            shift
+            if ! [[ $1 =~ $FLOAT_RE ]]; then
+               echo "ERROR: FLUCTUATION must be a float" >&2
+               exit 1
+            fi
+            if (( $(bc <<< "$1 > 100") == 1 )) || (( $(bc <<< "$1 < 0") == 1 ))
+            then
+               echo "ERROR: FLUCTUATION must in range [0, 100]" >&2
+               exit 1
+            fi
+            FLUCTUATION=$1
+            shift
+            ;;
+        -n*|--noise-train*)
+            shift
+            if ! [[ $1 =~ $INT_RE ]]; then
+               echo "ERROR: TRAINNOISE must be an integer" >&2
+               exit 1
+            fi
+            if (( $(bc <<< "$1 > 100") == 1 )) || (( $(bc <<< "$1 < 0") == 1 ))
+            then
+               echo "ERROR: TRAINNOISE must in range [0, 100]" >&2
+               exit 1
+            fi
+            TRAINNOISE=$1
+            shift
+            ;;
+        -N*|--noise-test*)
+            shift
+            if ! [[ $1 =~ $INT_RE ]]; then
+               echo "ERROR: TESTNOISE must be an integer" >&2
+               exit 1
+            fi
+            if (( $(bc <<< "$1 > 100") == 1 )) || (( $(bc <<< "$1 < 0") == 1 ))
+            then
+               echo "ERROR: TESTNOISE must in range [0, 100]" >&2
+               exit 1
+            fi
+            TESTNOISE=$1
+            shift
+            ;;
+        -p*|--pass*)
+            shift
+            if ! [[ $1 =~ $INT_RE ]]; then
+               echo "ERROR: PASS must be an integer" >&2
+               exit 1
+            fi
+            PASS=$1
+            shift
+            ;;
+        -t*|--train*)
+            shift
+            if [ ! -f $1 ]; then
+                echo "ERROR: $1 dosen't exist!"
+                exit 1
+            fi
+            TRAIN=$1
+            shift
+            ;;
+        -T*|--test*)
+            shift
+            if [ ! -f $1 ]; then
+                echo "ERROR: $1 dosen't exist!"
+                exit 1
+            fi
+            TEST=$1
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [ "$TRAIN" == "" ]; then
+    echo "ERROR: you must specify a training file using option -t"
+    usage
+    exit 1;
+fi
+
+./art1 "$TRAIN" "$TEST" "$OUTPUT" "$SKIP" "$TRAINNOISE" " $TESTNOISE" "$BETA" "$VIGILANCE" "$FLUCTUATION" "$PASS"
+
+exit 0

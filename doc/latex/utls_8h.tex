@@ -1,0 +1,422 @@
+\hypertarget{utls_8h}{\section{src/utls.h File Reference}
+\label{utls_8h}\index{src/utls.\-h@{src/utls.\-h}}
+}
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+{\ttfamily \#include $<$limits.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}containers.\-h\char`\"{}}\\*
+Include dependency graph for utls.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{utls_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{utls_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line}
+\item 
+struct \hyperlink{struct_cluster}{Cluster}
+\item 
+struct \hyperlink{struct_in_param}{In\-Param}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{utls_8h_a33bfc1f995233887a0414369c36936b8}{N\-O\-T\-\_\-\-F\-O\-U\-N\-D}~U\-L\-O\-N\-G\-\_\-\-M\-A\-X
+\item 
+\#define \hyperlink{utls_8h_a5762b99b606a8008d4244c4d484e1f1c}{T\-R\-A\-I\-N}~200
+\item 
+\#define \hyperlink{utls_8h_ab946e2e7f7679350627acfded8e2658b}{T\-E\-S\-T}~300
+\item 
+\#define \hyperlink{utls_8h_aa464bcc62b9b0d92d787362f5b7246db}{vec\-\_\-get\-\_\-as\-\_\-str}(pat, idx)~$\ast$(char $\ast$$\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{vec\-\_\-get\-\_\-as\-\_\-char}(pat, idx)~$\ast$(char $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a569ab73ba4a653769727a42f7a5b42aa}{vec\-\_\-get\-\_\-as\-\_\-int}(pat, idx)~$\ast$(int $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a4b79612cd76e6d535736a758c3e594ce}{vec\-\_\-get\-\_\-as\-\_\-ulong}(pat, idx)~$\ast$(\hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong} $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a3b7c1c94aa9a09dad666529eecdfe3e1}{vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t}(pat, idx)~$\ast$(size\-\_\-t $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_adec1843997e28759e3d0c7f0c54b7fc1}{vec\-\_\-get\-\_\-as\-\_\-vec}(pat, idx)~(Vector $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a311104738a07b6114a593474ced08714}{vec\-\_\-get\-\_\-as\-\_\-clust}(pat, idx)~$\ast$(\hyperlink{struct_cluster}{Cluster} $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a81b73ad77a2b611100a9cae3a658cfff}{vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line}(pat, idx)~$\ast$(\hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} $\ast$)i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a86e93c24ada21ba059afe24441674cee}{vec\-\_\-get}(pat, idx)~i\-Vector.\-Get\-Element(pat, idx)
+\item 
+\#define \hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\-\_\-size}(vec)~i\-Vector.\-Size(vec)
+\item 
+\#define \hyperlink{utls_8h_a6d9043eff919a9d274f0d751c9c3eb97}{vec\-\_\-replace\-\_\-at}(vec, idx, data)~i\-Vector.\-Replace\-At(vec, idx, data)
+\item 
+\#define \hyperlink{utls_8h_aa8100a0e5707130e1f329357460a1e93}{vec\-\_\-erase}(vec, elem)~i\-Vector.\-Erase(vec, elem)
+\item 
+\#define \hyperlink{utls_8h_a3b47dd200a0ebc61dff0ca6f8df287c7}{vec\-\_\-clear}(vec)~if(\hyperlink{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{vec\-\_\-size}(vec) $>$ 0) \{ i\-Vector.\-Clear(vec); \}
+\item 
+\#define \hyperlink{utls_8h_aeabb88d30592096ae57ba7bfb7ada1e9}{vec\-\_\-add}(vec, data)~i\-Vector.\-Add(vec, data)
+\item 
+\#define \hyperlink{utls_8h_a7ff2f46fa4c3d284ecfb58cf2e12ee20}{vec\-\_\-pushback}(vec, data)~i\-Vector.\-Push\-Back(vec, data)
+\item 
+\#define \hyperlink{utls_8h_a8cc49d1f7ac5ac8defeeec63b65b4dc7}{vec\-\_\-copy}(vec)~i\-Vector.\-Copy(vec)
+\item 
+\#define \hyperlink{utls_8h_ae63a8e47a3bc9f44ce4eefc352b0a692}{vec\-\_\-equal}(vec1, vec2)~i\-Vector.\-Copy(vec)
+\item 
+\#define \hyperlink{utls_8h_afc206e82914e64e7674a8b05336a85b1}{vec\-\_\-set\-\_\-cmp\-\_\-fun}(vec, fun)~i\-Vector.\-Set\-Compare\-Function(vec, fun)
+\item 
+\#define \hyperlink{utls_8h_abc950a8e4220dc4235e041a6046be4c2}{get\-\_\-pat\-\_\-set}(clust)~(\&clust)-\/$>$pat\-Set
+\item 
+\#define \hyperlink{utls_8h_aaa544158b83da98d05fe785fe4a64bc9}{get\-\_\-prot}(clust)~(\&clust)-\/$>$prot
+\item 
+\#define \hyperlink{utls_8h_ac73184ee27ff5d64966323543cb44c81}{get\-\_\-inhib}(clust)~(\&clust)-\/$>$inhib
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long \hyperlink{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{ulong}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{utls_8h_aa9a0ba51697010b724800616e773df94}{cmp\-Fun} (const void $\ast$elem1, const void $\ast$elem2, Compare\-Info $\ast$Extra\-Args)
+\item 
+unsigned long \hyperlink{utls_8h_ae50cac411e54e306d3a7cc34b5de0dc9}{pat\-\_\-in\-\_\-clust\-\_\-set} (const Vector $\ast$clust, unsigned long set)
+\item 
+unsigned long \hyperlink{utls_8h_abc2b3eff9fa74bb67735034a40ff428a}{pat\-\_\-in\-\_\-set} (Vector $\ast$set, Vector $\ast$pat)
+\item 
+void \hyperlink{utls_8h_a517b46cc8a51561901270f19dfc65ee9}{line\-\_\-val\-\_\-to\-\_\-vec} (Vector $\ast$res, List $\ast$lines)
+\item 
+void \hyperlink{utls_8h_ad0f6d7f0f2c62b3a517a76428e4aab2e}{line\-\_\-class\-\_\-to\-\_\-vec} (Vector $\ast$res, List $\ast$lines)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{utls_8h_ac73184ee27ff5d64966323543cb44c81}{\index{utls.\-h@{utls.\-h}!get\-\_\-inhib@{get\-\_\-inhib}}
+\index{get\-\_\-inhib@{get\-\_\-inhib}!utls.h@{utls.\-h}}
+\subsubsection[{get\-\_\-inhib}]{\setlength{\rightskip}{0pt plus 5cm}\#define get\-\_\-inhib(
+\begin{DoxyParamCaption}
+\item[{}]{clust}
+\end{DoxyParamCaption}
+)~(\&clust)-\/$>$inhib}}\label{utls_8h_ac73184ee27ff5d64966323543cb44c81}
+\hypertarget{utls_8h_abc950a8e4220dc4235e041a6046be4c2}{\index{utls.\-h@{utls.\-h}!get\-\_\-pat\-\_\-set@{get\-\_\-pat\-\_\-set}}
+\index{get\-\_\-pat\-\_\-set@{get\-\_\-pat\-\_\-set}!utls.h@{utls.\-h}}
+\subsubsection[{get\-\_\-pat\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}\#define get\-\_\-pat\-\_\-set(
+\begin{DoxyParamCaption}
+\item[{}]{clust}
+\end{DoxyParamCaption}
+)~(\&clust)-\/$>$pat\-Set}}\label{utls_8h_abc950a8e4220dc4235e041a6046be4c2}
+\hypertarget{utls_8h_aaa544158b83da98d05fe785fe4a64bc9}{\index{utls.\-h@{utls.\-h}!get\-\_\-prot@{get\-\_\-prot}}
+\index{get\-\_\-prot@{get\-\_\-prot}!utls.h@{utls.\-h}}
+\subsubsection[{get\-\_\-prot}]{\setlength{\rightskip}{0pt plus 5cm}\#define get\-\_\-prot(
+\begin{DoxyParamCaption}
+\item[{}]{clust}
+\end{DoxyParamCaption}
+)~(\&clust)-\/$>$prot}}\label{utls_8h_aaa544158b83da98d05fe785fe4a64bc9}
+\hypertarget{utls_8h_a33bfc1f995233887a0414369c36936b8}{\index{utls.\-h@{utls.\-h}!N\-O\-T\-\_\-\-F\-O\-U\-N\-D@{N\-O\-T\-\_\-\-F\-O\-U\-N\-D}}
+\index{N\-O\-T\-\_\-\-F\-O\-U\-N\-D@{N\-O\-T\-\_\-\-F\-O\-U\-N\-D}!utls.h@{utls.\-h}}
+\subsubsection[{N\-O\-T\-\_\-\-F\-O\-U\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-O\-T\-\_\-\-F\-O\-U\-N\-D~U\-L\-O\-N\-G\-\_\-\-M\-A\-X}}\label{utls_8h_a33bfc1f995233887a0414369c36936b8}
+\hypertarget{utls_8h_ab946e2e7f7679350627acfded8e2658b}{\index{utls.\-h@{utls.\-h}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!utls.h@{utls.\-h}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-E\-S\-T~300}}\label{utls_8h_ab946e2e7f7679350627acfded8e2658b}
+\hypertarget{utls_8h_a5762b99b606a8008d4244c4d484e1f1c}{\index{utls.\-h@{utls.\-h}!T\-R\-A\-I\-N@{T\-R\-A\-I\-N}}
+\index{T\-R\-A\-I\-N@{T\-R\-A\-I\-N}!utls.h@{utls.\-h}}
+\subsubsection[{T\-R\-A\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-R\-A\-I\-N~200}}\label{utls_8h_a5762b99b606a8008d4244c4d484e1f1c}
+\hypertarget{utls_8h_aeabb88d30592096ae57ba7bfb7ada1e9}{\index{utls.\-h@{utls.\-h}!vec\-\_\-add@{vec\-\_\-add}}
+\index{vec\-\_\-add@{vec\-\_\-add}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-add(
+\begin{DoxyParamCaption}
+\item[{}]{vec, }
+\item[{}]{data}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Add(vec, data)}}\label{utls_8h_aeabb88d30592096ae57ba7bfb7ada1e9}
+\hypertarget{utls_8h_a3b47dd200a0ebc61dff0ca6f8df287c7}{\index{utls.\-h@{utls.\-h}!vec\-\_\-clear@{vec\-\_\-clear}}
+\index{vec\-\_\-clear@{vec\-\_\-clear}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-clear(
+\begin{DoxyParamCaption}
+\item[{}]{vec}
+\end{DoxyParamCaption}
+)~if({\bf vec\-\_\-size}(vec) $>$ 0) \{ i\-Vector.\-Clear(vec); \}}}\label{utls_8h_a3b47dd200a0ebc61dff0ca6f8df287c7}
+\hypertarget{utls_8h_a8cc49d1f7ac5ac8defeeec63b65b4dc7}{\index{utls.\-h@{utls.\-h}!vec\-\_\-copy@{vec\-\_\-copy}}
+\index{vec\-\_\-copy@{vec\-\_\-copy}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-copy(
+\begin{DoxyParamCaption}
+\item[{}]{vec}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Copy(vec)}}\label{utls_8h_a8cc49d1f7ac5ac8defeeec63b65b4dc7}
+\hypertarget{utls_8h_ae63a8e47a3bc9f44ce4eefc352b0a692}{\index{utls.\-h@{utls.\-h}!vec\-\_\-equal@{vec\-\_\-equal}}
+\index{vec\-\_\-equal@{vec\-\_\-equal}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-equal}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-equal(
+\begin{DoxyParamCaption}
+\item[{}]{vec1, }
+\item[{}]{vec2}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Copy(vec)}}\label{utls_8h_ae63a8e47a3bc9f44ce4eefc352b0a692}
+\hypertarget{utls_8h_aa8100a0e5707130e1f329357460a1e93}{\index{utls.\-h@{utls.\-h}!vec\-\_\-erase@{vec\-\_\-erase}}
+\index{vec\-\_\-erase@{vec\-\_\-erase}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-erase}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-erase(
+\begin{DoxyParamCaption}
+\item[{}]{vec, }
+\item[{}]{elem}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Erase(vec, elem)}}\label{utls_8h_aa8100a0e5707130e1f329357460a1e93}
+\hypertarget{utls_8h_a86e93c24ada21ba059afe24441674cee}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get@{vec\-\_\-get}}
+\index{vec\-\_\-get@{vec\-\_\-get}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_a86e93c24ada21ba059afe24441674cee}
+\hypertarget{utls_8h_ac32015af01d4bd0f35bf37753d23de51}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-char@{vec\-\_\-get\-\_\-as\-\_\-char}}
+\index{vec\-\_\-get\-\_\-as\-\_\-char@{vec\-\_\-get\-\_\-as\-\_\-char}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-char(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$(char $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_ac32015af01d4bd0f35bf37753d23de51}
+\hypertarget{utls_8h_a311104738a07b6114a593474ced08714}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-clust@{vec\-\_\-get\-\_\-as\-\_\-clust}}
+\index{vec\-\_\-get\-\_\-as\-\_\-clust@{vec\-\_\-get\-\_\-as\-\_\-clust}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-clust}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-clust(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$({\bf Cluster} $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_a311104738a07b6114a593474ced08714}
+\hypertarget{utls_8h_a81b73ad77a2b611100a9cae3a658cfff}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line@{vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line}}
+\index{vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line@{vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-\-C\-S\-V\-Line(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$({\bf C\-S\-V\-Line} $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_a81b73ad77a2b611100a9cae3a658cfff}
+\hypertarget{utls_8h_a569ab73ba4a653769727a42f7a5b42aa}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-int@{vec\-\_\-get\-\_\-as\-\_\-int}}
+\index{vec\-\_\-get\-\_\-as\-\_\-int@{vec\-\_\-get\-\_\-as\-\_\-int}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-int}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-int(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$(int $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_a569ab73ba4a653769727a42f7a5b42aa}
+\hypertarget{utls_8h_a3b7c1c94aa9a09dad666529eecdfe3e1}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t@{vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t}}
+\index{vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t@{vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-size\-\_\-t(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$(size\-\_\-t $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_a3b7c1c94aa9a09dad666529eecdfe3e1}
+\hypertarget{utls_8h_aa464bcc62b9b0d92d787362f5b7246db}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-str@{vec\-\_\-get\-\_\-as\-\_\-str}}
+\index{vec\-\_\-get\-\_\-as\-\_\-str@{vec\-\_\-get\-\_\-as\-\_\-str}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-str(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$(char $\ast$$\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_aa464bcc62b9b0d92d787362f5b7246db}
+\hypertarget{utls_8h_a4b79612cd76e6d535736a758c3e594ce}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-ulong@{vec\-\_\-get\-\_\-as\-\_\-ulong}}
+\index{vec\-\_\-get\-\_\-as\-\_\-ulong@{vec\-\_\-get\-\_\-as\-\_\-ulong}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-ulong}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-ulong(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~$\ast$({\bf ulong} $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_a4b79612cd76e6d535736a758c3e594ce}
+\hypertarget{utls_8h_adec1843997e28759e3d0c7f0c54b7fc1}{\index{utls.\-h@{utls.\-h}!vec\-\_\-get\-\_\-as\-\_\-vec@{vec\-\_\-get\-\_\-as\-\_\-vec}}
+\index{vec\-\_\-get\-\_\-as\-\_\-vec@{vec\-\_\-get\-\_\-as\-\_\-vec}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-get\-\_\-as\-\_\-vec}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-get\-\_\-as\-\_\-vec(
+\begin{DoxyParamCaption}
+\item[{}]{pat, }
+\item[{}]{idx}
+\end{DoxyParamCaption}
+)~(Vector $\ast$)i\-Vector.\-Get\-Element(pat, idx)}}\label{utls_8h_adec1843997e28759e3d0c7f0c54b7fc1}
+\hypertarget{utls_8h_a7ff2f46fa4c3d284ecfb58cf2e12ee20}{\index{utls.\-h@{utls.\-h}!vec\-\_\-pushback@{vec\-\_\-pushback}}
+\index{vec\-\_\-pushback@{vec\-\_\-pushback}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-pushback}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-pushback(
+\begin{DoxyParamCaption}
+\item[{}]{vec, }
+\item[{}]{data}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Push\-Back(vec, data)}}\label{utls_8h_a7ff2f46fa4c3d284ecfb58cf2e12ee20}
+\hypertarget{utls_8h_a6d9043eff919a9d274f0d751c9c3eb97}{\index{utls.\-h@{utls.\-h}!vec\-\_\-replace\-\_\-at@{vec\-\_\-replace\-\_\-at}}
+\index{vec\-\_\-replace\-\_\-at@{vec\-\_\-replace\-\_\-at}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-replace\-\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-replace\-\_\-at(
+\begin{DoxyParamCaption}
+\item[{}]{vec, }
+\item[{}]{idx, }
+\item[{}]{data}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Replace\-At(vec, idx, data)}}\label{utls_8h_a6d9043eff919a9d274f0d751c9c3eb97}
+\hypertarget{utls_8h_afc206e82914e64e7674a8b05336a85b1}{\index{utls.\-h@{utls.\-h}!vec\-\_\-set\-\_\-cmp\-\_\-fun@{vec\-\_\-set\-\_\-cmp\-\_\-fun}}
+\index{vec\-\_\-set\-\_\-cmp\-\_\-fun@{vec\-\_\-set\-\_\-cmp\-\_\-fun}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-set\-\_\-cmp\-\_\-fun}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-set\-\_\-cmp\-\_\-fun(
+\begin{DoxyParamCaption}
+\item[{}]{vec, }
+\item[{}]{fun}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Set\-Compare\-Function(vec, fun)}}\label{utls_8h_afc206e82914e64e7674a8b05336a85b1}
+\hypertarget{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}{\index{utls.\-h@{utls.\-h}!vec\-\_\-size@{vec\-\_\-size}}
+\index{vec\-\_\-size@{vec\-\_\-size}!utls.h@{utls.\-h}}
+\subsubsection[{vec\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}\#define vec\-\_\-size(
+\begin{DoxyParamCaption}
+\item[{}]{vec}
+\end{DoxyParamCaption}
+)~i\-Vector.\-Size(vec)}}\label{utls_8h_a12bdf08e246ee2dbf37483c33b5c28df}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}{\index{utls.\-h@{utls.\-h}!ulong@{ulong}}
+\index{ulong@{ulong}!utls.h@{utls.\-h}}
+\subsubsection[{ulong}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long {\bf ulong}}}\label{utls_8h_a718b4eb2652c286f4d42dc18a8e71a1a}
+
+
+\subsection{Function Documentation}
+\hypertarget{utls_8h_aa9a0ba51697010b724800616e773df94}{\index{utls.\-h@{utls.\-h}!cmp\-Fun@{cmp\-Fun}}
+\index{cmp\-Fun@{cmp\-Fun}!utls.h@{utls.\-h}}
+\subsubsection[{cmp\-Fun}]{\setlength{\rightskip}{0pt plus 5cm}int cmp\-Fun (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{elem1, }
+\item[{const void $\ast$}]{elem2, }
+\item[{Compare\-Info $\ast$}]{Extra\-Args}
+\end{DoxyParamCaption}
+)}}\label{utls_8h_aa9a0ba51697010b724800616e773df94}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{utls_8h_aa9a0ba51697010b724800616e773df94_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8h_ad0f6d7f0f2c62b3a517a76428e4aab2e}{\index{utls.\-h@{utls.\-h}!line\-\_\-class\-\_\-to\-\_\-vec@{line\-\_\-class\-\_\-to\-\_\-vec}}
+\index{line\-\_\-class\-\_\-to\-\_\-vec@{line\-\_\-class\-\_\-to\-\_\-vec}!utls.h@{utls.\-h}}
+\subsubsection[{line\-\_\-class\-\_\-to\-\_\-vec}]{\setlength{\rightskip}{0pt plus 5cm}void line\-\_\-class\-\_\-to\-\_\-vec (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{res, }
+\item[{List $\ast$}]{lines}
+\end{DoxyParamCaption}
+)}}\label{utls_8h_ad0f6d7f0f2c62b3a517a76428e4aab2e}
+Push each class variable of a list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures into a vector.
+
+\begin{DoxyNote}{Note}
+The elements of the vector or of variable size so we must create the vector with sizeof(void $\ast$) and push a pointer to the elements.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created vector containing the classes names. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utls_8h_ad0f6d7f0f2c62b3a517a76428e4aab2e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8h_a517b46cc8a51561901270f19dfc65ee9}{\index{utls.\-h@{utls.\-h}!line\-\_\-val\-\_\-to\-\_\-vec@{line\-\_\-val\-\_\-to\-\_\-vec}}
+\index{line\-\_\-val\-\_\-to\-\_\-vec@{line\-\_\-val\-\_\-to\-\_\-vec}!utls.h@{utls.\-h}}
+\subsubsection[{line\-\_\-val\-\_\-to\-\_\-vec}]{\setlength{\rightskip}{0pt plus 5cm}void line\-\_\-val\-\_\-to\-\_\-vec (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{res, }
+\item[{List $\ast$}]{lines}
+\end{DoxyParamCaption}
+)}}\label{utls_8h_a517b46cc8a51561901270f19dfc65ee9}
+Push each pattern of a list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures into a vector.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lines} & The list of \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created vector containing the patterns. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utls_8h_a517b46cc8a51561901270f19dfc65ee9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8h_ae50cac411e54e306d3a7cc34b5de0dc9}{\index{utls.\-h@{utls.\-h}!pat\-\_\-in\-\_\-clust\-\_\-set@{pat\-\_\-in\-\_\-clust\-\_\-set}}
+\index{pat\-\_\-in\-\_\-clust\-\_\-set@{pat\-\_\-in\-\_\-clust\-\_\-set}!utls.h@{utls.\-h}}
+\subsubsection[{pat\-\_\-in\-\_\-clust\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long pat\-\_\-in\-\_\-clust\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{const Vector $\ast$}]{clusts, }
+\item[{{\bf ulong}}]{pat}
+\end{DoxyParamCaption}
+)}}\label{utls_8h_ae50cac411e54e306d3a7cc34b5de0dc9}
+Check if a given pattern is in a cluster patterns set.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clusts} & The network clusters. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The pattern to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cluster index containing the pattern or N\-O\-T\-\_\-\-F\-O\-U\-N\-D if the pattern dosen't belongs to any cluster. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utls_8h_ae50cac411e54e306d3a7cc34b5de0dc9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{utls_8h_abc2b3eff9fa74bb67735034a40ff428a}{\index{utls.\-h@{utls.\-h}!pat\-\_\-in\-\_\-set@{pat\-\_\-in\-\_\-set}}
+\index{pat\-\_\-in\-\_\-set@{pat\-\_\-in\-\_\-set}!utls.h@{utls.\-h}}
+\subsubsection[{pat\-\_\-in\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long pat\-\_\-in\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{Vector $\ast$}]{set, }
+\item[{Vector $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{utls_8h_abc2b3eff9fa74bb67735034a40ff428a}
+Check if a given pattern is in a given patterns set.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em set} & The patterns set. \\
+\hline
+\mbox{\tt in}  & {\em pat} & The pattern to check. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{utls_8h_abc2b3eff9fa74bb67735034a40ff428a_cgraph}
+\end{center}
+\end{figure}
+
+

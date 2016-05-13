@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ ! -d "./results/clusters" ]; then
+    echo "WARNING: ./results/ dosen't exists"
+    exit 0
+fi
+
+rm ./results/clusters/*
+
+if [ ! -d "./results/train" ]; then
+    echo "WARNING: ./results/ dosen't exists"
+    exit 0
+fi
+
+rm ./results/train/*
+
+if [ ! -d "./results/test" ]; then
+    echo "WARNING: ./results/ dosen't exists"
+    exit 0
+fi
+
+rm ./results/test/*
+
+exit 0

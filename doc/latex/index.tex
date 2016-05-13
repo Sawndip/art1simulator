@@ -1,0 +1,260 @@
+\section*{R\-E\-Q\-U\-I\-R\-E\-M\-E\-N\-T\-S }
+
+You'll need cmake in order to compile with the cmake list. On debian you can use\-: 
+\begin{DoxyCode}
+\textcolor{preprocessor}{# apt-get install cmake}
+\end{DoxyCode}
+
+
+This code also use the C Containers Library (ccl). The library is released under the B\-S\-D license and the code is include in this program. \begin{DoxySeeAlso}{See Also}
+\href{https://code.google.com/p/ccl/}{\tt https\-://code.\-google.\-com/p/ccl/}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+It is possible to translate the program so that it dosen't use these library containers but it is very less readable and the performances aren't better.
+\end{DoxyNote}
+\section*{M\-E\-M\-O\-R\-Y L\-E\-A\-K\-S }
+
+No memory leaks should occur. I execute the program many times in different ways and vargrind is manifest\-: 
+\begin{DoxyCode}
+All heap blocks were freed -- no leaks are possible
+\end{DoxyCode}
+
+
+\section*{G\-E\-N\-E\-R\-A\-T\-E Y\-O\-U\-R B\-I\-N\-A\-R\-Y P\-A\-T\-T\-E\-R\-N\-S S\-E\-T\-S }
+
+I have add a python script which will help you generate binary patterns sets from non-\/binary patterns sets. You can run it with\-: 
+\begin{DoxyCode}
+./generate\_binary\_patterns -i input\_file -o output\_file -s class\_pos
+\end{DoxyCode}
+
+
+The input file should contains one patterns per line. Every patterns should have the same number of attributes. The clas\-\_\-pos is the index of the class of the pattern. It can be at the begining like in\-: 
+\begin{DoxyCode}
+\textcolor{keyword}{class}, attrib0, attrib1, attrib2
+@encode
+
+In which \textcolor{keywordflow}{case} the class\_pos would be 1. Or it can be at the end like in:
+@code
+attrib0, attrib1, attrib2, \textcolor{keyword}{class}
+\end{DoxyCode}
+ In which case the class\-\_\-pos wouls be -\/1.
+
+For instance if you want to generate a binary patterns set for the Zoo dataset you can use\-: 
+\begin{DoxyCode}
+./generate\_binary\_patterns -i ./data/Zoo/zoo.data -o ./data/zoo.csv -s \textcolor{stringliteral}{'-1'}
+\end{DoxyCode}
+
+
+The python script will scan every line of the input file and count the number of different values for every comma separated attributes. You can see it like\-: 
+\begin{DoxyCode}
+e,t,s,h,s,s,p
+a,t,s,r,s,s,j
+e,b,s,h,s,a,j
+e,t,s,g,s,s,p
+-------------
+2 2 1 3 1 2 2
+\end{DoxyCode}
+
+
+This means that the third and fifth attributes are useless because they can only hold 1 unique value. The script now knows the number of different values each attribute can hold and it also knows these values because it has build a list which should looks like\-: 
+\begin{DoxyCode}
+[[\textcolor{charliteral}{'e'}, \textcolor{charliteral}{'a'}],
+ [\textcolor{charliteral}{'t'}, \textcolor{charliteral}{'b'}],
+ [\textcolor{charliteral}{'s'}],
+ [\textcolor{charliteral}{'h'}, \textcolor{charliteral}{'r'}, \textcolor{charliteral}{'g'}],
+ [\textcolor{charliteral}{'s'}],
+ [\textcolor{charliteral}{'s'}, \textcolor{charliteral}{'a'}],
+ [\textcolor{charliteral}{'p'}, \textcolor{charliteral}{'j'}]]
+\end{DoxyCode}
+
+
+Finaly the script will flatten the previous nested list and give each pattern a 1 if it hold this value or a 0 otherwise. In our example the first pattern will be converted to (first line preent the flatten list\-: 
+\begin{DoxyCode}
+[\textcolor{charliteral}{'e'}, \textcolor{charliteral}{'a'}, \textcolor{charliteral}{'t'}, \textcolor{charliteral}{'b'}, \textcolor{charliteral}{'s'}, \textcolor{charliteral}{'h'}, \textcolor{charliteral}{'r'}, \textcolor{charliteral}{'g'}, \textcolor{charliteral}{'s'}, \textcolor{charliteral}{'s'}, \textcolor{charliteral}{'a'}, \textcolor{charliteral}{'p'}, \textcolor{charliteral}{'j'}]
+-----------------------------------------------------------------
+  1    0    1    0    1    1    0    0    1    1    0    1    0
+\end{DoxyCode}
+
+
+Of course, the pattern will only have a 1 per attribute part of the list.
+
+\section*{R\-U\-N\-I\-N\-G T\-H\-E P\-R\-O\-G\-R\-A\-M }
+
+\subsection*{E\-X\-E\-M\-P\-L\-E R\-U\-N }
+
+You can run the program with something like\-: 
+\begin{DoxyCode}
+$ ./runart1 -t ./data/mushrooms\_train.csv -T ./data/mushrooms\_test.csv -s
+-n 5 -p 5
+\end{DoxyCode}
+ The above command use the mushrooms dataset, limit the execution to 5 passes and skip the first column of the dataset. See the description of the command line options below.
+
+The output looks like\-:\-: 
+\begin{DoxyCode}
+   \_   \_\_\_ \_\_\_\_\_ \_   \_\_\_ \_\_\_ \_\_  \_\_ \_   \_ \_      \_ \_\_\_\_\_ \_\_\_  \_\_\_ 
+  /\_\(\backslash\) | \_ \(\backslash\)\_   \_/ | / \_\_|\_ \_|  \(\backslash\)/  | | | | |    /\_\(\backslash\)\_   \_/ \_ \(\backslash\)| \_ \(\backslash\)
+ / \_ \(\backslash\)|   / | | | | \(\backslash\)\_\_ \(\backslash\)| || |\(\backslash\)/| | |\_| | |\_\_ / \_ \(\backslash\)| || (\_) |   /
+/\_/ \(\backslash\)\_\(\backslash\)\_|\_\(\backslash\) |\_| |\_| |\_\_\_/\_\_\_|\_|  |\_|\(\backslash\)\_\_\_/|\_\_\_\_/\_/ \(\backslash\)\_\(\backslash\)\_| \(\backslash\)\_\_\_/|\_|\_\(\backslash\)
+
+-------------------------------------------------------
+
+Runing ART1 algorithm \textcolor{keyword}{using} following parameters:
+    Training file: ./data/mushrooms.csv
+    Testing file: ./data/mushrooms.csv
+    Skipping first attribute of every patterns
+    Output file prefix: art
+    Fluctuation percentage: 5%
+    Max number of iterations: 5
+    Beta parameter: 1
+    Vigilance parmeter: 0.5
+
+------------- INTERNING TRAINING PATTERNS ------------
+
+Opening file \textcolor{stringliteral}{"./data/mushrooms.csv"}... OK
+Reading input file \textcolor{stringliteral}{"./data/mushrooms.csv"}... OK
+
+--------- CHECKING TRAINING PATTERNS VALIDITY --------
+
+7723 patterns have been scanned
+Patterns length is 117
+Removing patterns containing only 0... OK
+Number of network patterns: 7723
+
+-------------------- ADDING NOISE -------------------
+
+Adding 5% of noise to each patterns... OK
+8452 pattern\textcolor{stringliteral}{'s bits have been switched to 0}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{------------------- TRAINING STAGE ------------------}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{Pass n° | No. reassigned | Fluctuation | No. clusters}
+\textcolor{stringliteral}{--------+----------------+-------------+-------------}
+\textcolor{stringliteral}{      1 |           7723 |        100% |          359}
+\textcolor{stringliteral}{      2 |           6410 |    82.9988% |          442}
+\textcolor{stringliteral}{      3 |           4309 |    55.7944% |          447}
+\textcolor{stringliteral}{      4 |           3568 |    46.1997% |          447}
+\textcolor{stringliteral}{      5 |           3466 |    44.8789% |          447}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{-------------- WRITING TRAINING RESULTS -------------}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{Writing results...}
+\textcolor{stringliteral}{Opening file "./results/train/art\_results"... OK}
+\textcolor{stringliteral}{Opening file "./results/clusters/art\_clust\_0.csv"... OK}
+\textcolor{stringliteral}{Opening file "./results/clusters/art\_clust\_1.csv"... OK}
+\textcolor{stringliteral}{Opening file "./results/clusters/art\_clust\_2.csv"... OK}
+\textcolor{stringliteral}{[...]}
+\textcolor{stringliteral}{Opening file "./results/clusters/art\_clust\_446.csv"... OK}
+\textcolor{stringliteral}{OK}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{------------- INTERNING TESTING PATTERNS ------------}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{Opening file "./data/test.csv"... OK}
+\textcolor{stringliteral}{Reading input file "./data/test.csv"... OK}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{--------- CHECKING TESTING PATTERNS VALIDITY --------}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{401 patterns have been scanned}
+\textcolor{stringliteral}{Patterns length is 117}
+\textcolor{stringliteral}{Removing patterns containing only 0... OK}
+\textcolor{stringliteral}{Number of network patterns: 401}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{-------------------- ADDING NOISE -------------------}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{Adding 5% of noise to each patterns... OK}
+\textcolor{stringliteral}{454 pattern'}s bits have been switched to 0
+
+------------------- TESTING STAGE ------------------
+
+SUCCESS: 396
+FAIL: 5
+
+-------------- WRITING TESTING RESULTS -------------
+
+nPats: 401
+emptyPats: 0
+Opening file \textcolor{stringliteral}{"./results/test/art\_results"}... OK
+Writing results... OK
+\end{DoxyCode}
+
+
+Dataset used is mushrooms\-\_\-train.\-csv. We ask program to exit after 5 passes and we indicate that the first column of each non-\/empty and non-\/comment lines of the dataset is the class of the pattern so it must be isolated from the pattern itself. We also add 5\% of noise to the patterns, this is the reason why there is so much clusters.
+
+Here are the major steps of the training stage\-:\-:
+
+
+\begin{DoxyEnumerate}
+\item The program list the parameters of the network. It can be the parameters you have pass on the command line or their default values.
+\item The dataset is opened and read. The patterns (every valid lines) are extracted from the file and inserted in as much \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structures (see description below) as needed. An \hyperlink{struct_c_s_v_line}{C\-S\-V\-Line} structure basically hold a pattern and its class.
+\item The patterns length is checked\-: every patterns must have the exact same length, otherwise, the program will exit.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The patterns containing only 0s are removed because they are useless and can cause infinite loops.
+\item The patterns are normalized\-: every bits are clamped to 0 or 1.
+\item The \char`\"{}real\char`\"{} training starts\-: a. The program try to assigned every patterns to a cluster, creating new clusters as needed. b. The pass ends when every patterns have been assigned to a cluster. c. Then a new pass starts and the program try to reassigned patterns to better clusters. The fluctuation of the pass is a function of the number of reassigned patterns. d. And so on until the maximum number of passes is reached or the fluctuation fall below the minimum fluctuation rate.
+\item The results are written on a file + one file for each clusters, describing it.
+\item The program also compute the classes of the clusters during the results output (I agree this may not be the right place to do it, bit confusing...). The class of a cluster is determined by the classes of the patterns it contains. The program count the number of each unique class. The most prominent class is the class of the cluster.
+\item The program can then compute, for each pattern, if it has been classified in the right cluster, i.\-e. a cluster with the same class. The classification success/failure ratio is added at the bottom of the result file along with the clusters classes repartition.
+\end{DoxyEnumerate}
+
+Here are the following steps which are carried only if a testing set is passed to the program\-:\-:
+
+
+\begin{DoxyEnumerate}
+\item The program repeat the step 1-\/4 for the testing patterns set, if provided, otherwise it simply ends.
+\item The testing starts\-: a. For each testing pattern the program compute its best matching cluster, i.\-e. the cluster with the nearest prototype of the pattern, where the pattern would be classified. b. Then it compare the best matching cluster class with the pattern class. If they match then the classification is a success, otherwise it is a failure. c. The success/failure ratio is computed.
+\item The test results are written on a file in /results/test which allow the user to check wich patterns have been successfully classified and which have not. The ratio is also added at the end of the file.
+\end{DoxyEnumerate}
+
+Reguarding our example output, the five first steps are carried out then the training starts\-:
+
+
+\begin{DoxyItemize}
+\item In the first pass every patterns are assigned to a prototype so the fluctuation rate is 100\%.
+\item In the second pass about 83\% of the patterns are reassigned to a different cluster, the fluctuation rate is about 83\% (this high value is due to the noise we add to the atterns, without any noise it would have be something like 5\%).
+\item And so on until...
+\item The program reach the sixth passes but do not enter it. Instead it break the loop because we exceed the maximum number of passes.
+\end{DoxyItemize}
+
+After the training stage the results are written into the results files. The main result file (in \char`\"{}/results/training/\char`\"{}) contains every information about the network and the training stage. The files under \char`\"{}/results/clusters/\char`\"{} describes each cluster of the network by showing their prototype and listing their patterns (patterns which have contribute to its prototype). When the program's done with the training, it starts testing with the testing patterns set. The testing loop looks like\-:
+
+
+\begin{DoxyItemize}
+\item Select the next testing pattern.
+\item Find its best matching cluster.
+\item Compare the best matching cluster class with the pattern class.
+\begin{DoxyItemize}
+\item If they match, then the success variable is incremented.
+\item Else, the fail variable is incremented.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+And the testing loop will iterate on every testing patterns. At the end of the loop the ratio is printed and you can see that 396 testing patterns have been classified in a relevant cluster, matching their classes. The 5 others patterns have not been classified in a matching cluster.
+
+\subsection*{R\-E\-S\-U\-L\-T\-S I\-N\-T\-E\-R\-P\-R\-E\-T\-A\-T\-I\-O\-N }
+
+The classification in the previous exemple has been willingly complicated by adding noise to the patterns. Nonetheless, the neural network manage to reach a very acceptable result. It has successfully recognized the edible state of 98.\-75\% of the tested mushrooms. Among the 5 mushrooms which have been wrongfully classified 3 have been classified as edible altough they are poisonous (pattern 51, 134, 169) so there is less than a chance for two hundred for you to eat a poisonous mushroom if you trust the program results. Keep it mind that without noise the results could have been better.
+
+\section*{P\-A\-R\-A\-M\-E\-T\-E\-R\-S }
+
+-\/t specifies the dataset (csv file) with the patterns to train.
+
+-\/\-T specifies the dataset (csv file) with the patterns to test.
+
+-\/f specifies the minimum fluctuation. The program will stop if the minimum fluctuation is greater than the pass fluctuation. Default value is 5\%.
+
+-\/p specifies the maximum number of passes. The program will stop if the maximum number of passes is reached. In any case it is important to note that the final clusters are the best clusters set (the clusters set which induce the less fluctuation).
+
+-\/n noise network parameter\-: percentage of noise to add to the training patterns.
+
+-\/\-N noise network parameter\-: percentage of noise to add to the testing patterns.
+
+-\/s indicate to the program that it must skip the first dataset column (it should be the class of the pattern). This parameter must be used whenever you call the program but the idea is to make it more flexible by passing a value with the parameter -\/s indicating the columns of the classes (this is a todo).
+
+-\/o specifies a prefix for the output result files. Default is \char`\"{}art\char`\"{}.
+
+-\/b specifies the beta parameter value of the network. It influences the number of cluster (with the vigilance parameter). Default is 1 (no influence).
+
+-\/v specifies the network vigilance. It act as a pattern acceptance threshold for the clusters. The higher the vigilance the pickier the threshold, the higher the amount of clusters. The vigilance must be between 0 and 1. Default is 0.\-5.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000005}{Todo}]save network datas in a database (clusters, patterns...) so that it will be easier to train a network and test it later. Each network can be saved in a specific database which can be loaded later. \end{DoxyRefDesc}
